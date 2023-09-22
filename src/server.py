@@ -12,9 +12,9 @@ from flask import request
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-@app.route('/test')
+@app.route('/')
 def test():
-	return app.send_static_file('test.html')
+	return app.send_static_file('main.html')
 
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():

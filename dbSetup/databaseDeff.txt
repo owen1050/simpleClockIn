@@ -1,0 +1,19 @@
+
+Table users {
+  id integer
+  name string
+  checkedIn integer
+}
+
+Table events {
+  userId integer
+  time timestamp
+  checkIn integer
+}
+
+
+
+Ref: users.id < events.userId
+
+
+https://dbdiagram.io/d

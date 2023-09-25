@@ -40,9 +40,17 @@ def apiCheckUserIn():
 @app.route('/api/checkUserOut')
 def apiCheckUserOut():
 	id = int(request.args.get('id', default = -1))
-	checkedOut = db.checkUserOut(id)
-	print("checkUserOut:", id, checkedOut)
+	action = request.args.get('action', default = '')
+	checkedOut = db.checkUserOut(id, action)
+	print("checkUserOut:", id, action, checkedOut)
 	return str(checkedOut)
+
+@app.route('/api/getUserName')
+def getUserName():
+	id = int(request.args.get('id', default = -1))
+	name = db.getUserName(id)
+	print("gotUsername:", id, name)
+	return str(name)
 
 @app.route('/api/createUser')
 def apiCreateUser():

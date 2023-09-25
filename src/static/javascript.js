@@ -1,5 +1,6 @@
 var input = document.getElementById("id");
-url = "http://villawalsh.happyrobotics.com:3600"
+//url = "http://villawalsh.happyrobotics.com:3600"
+url = "http://localhost:5000"
 
 // Execute a function when the user presses a key on the keyboard
 input.addEventListener("keypress", function(event) {
@@ -16,15 +17,23 @@ input.addEventListener("keypress", function(event) {
 function signInOut() {
     textboxElement = document.getElementById("id")
     id = textboxElement.value;
+
+    actionElement = document.getElementById("idAction")
+    action = actionElement.value;
+
     textElement = document.getElementById("checkinText")
+
+    
     
     if(doesUserExist(id) == 1){
       if(isUserCheckedIn(id) == 1){
-        checkUserOut(id);
-        textElement.innerText = "Checked out " + id;
+        checkUserOut(id, action);
+        name = getUserName(id);
+        textElement.innerText = "Checked out " + name;
       } else {
         checkUserIn(id);
-        textElement.innerText = "Checked in " + id;
+        name = getUserName(id);
+        textElement.innerText = "Checked in " + name;
       }
     } else {
       textElement.innerText = "No user with ID:" + id;
@@ -86,13 +95,23 @@ function checkUserIn(id){
     return ret
 }
 
-function checkUserOut(id){
+function checkUserOut(id, action){
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", url + "/api/checkUserOut?id=" + id, false);
+    xhr.open("GET", url + "/api/checkUserOut?id=" + id + "&action=" + action, false);
     xhr.send();
     const data = xhr.response;
     console.log(data);
     ret = parseInt(data);
+    return ret
+}
+
+function getUserName(id){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getUserName?id=" + id, false);
+    xhr.send();
+    const data = xhr.response;
+    console.log(data);
+    ret = data;
     return ret
 }
 

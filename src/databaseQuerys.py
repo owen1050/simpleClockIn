@@ -5,7 +5,7 @@ class databaseQuerys:
 	con = -1
 
 	def __init__(self):
-		self.con = sqlite3.connect("realDB.db", check_same_thread=False)
+		self.con = sqlite3.connect("testDB.db", check_same_thread=False)
 		
 	def doesUserExist(self, id):
 		cur = self.con.cursor()
@@ -36,7 +36,7 @@ class databaseQuerys:
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', {1})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', 'checkIn', {1})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -47,13 +47,13 @@ class databaseQuerys:
 			return -1
 		
 
-	def checkUserOut(self, id):
+	def checkUserOut(self, id, action):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', {0})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', '{action}', {0})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -75,4 +75,15 @@ class databaseQuerys:
 				return 0
 		except Exception as e:
 			print("error in createUser", e)
+			return -1
+
+	def getUserName(self, id):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM users where id = " + str(id))
+			ret = res.fetchone()[1]
+			return ret
+			
+		except Exception as e:
+			print("error in isUserCheckedIn", e)
 			return -1

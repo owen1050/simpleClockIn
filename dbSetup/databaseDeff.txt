@@ -1,13 +1,14 @@
 
 Table users {
   id integer
-  name string
+  name text
   checkedIn integer
 }
 
 Table events {
   userId integer
   time timestamp
+  action text
   checkIn integer
 }
 

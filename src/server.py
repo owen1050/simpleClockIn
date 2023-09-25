@@ -13,8 +13,13 @@ db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
-def test():
+def main():
 	return app.send_static_file('main.html')
+
+@app.route('/newUser')
+def newUser():
+	return app.send_static_file('newUserPage.html')
+
 
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():

@@ -1,8 +1,8 @@
-var input = document.getElementById("id");
-//url = "http://villawalsh.happyrobotics.com:3600"
-url = "http://localhost:5000"
+url = "http://villawalsh.happyrobotics.com:3600"
+//url = "http://localhost:5000"
 
 // Execute a function when the user presses a key on the keyboard
+var input = document.getElementById("id");
 input.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
@@ -14,6 +14,10 @@ input.addEventListener("keypress", function(event) {
 });
 
 
+function gotoNew(){
+  window.location.replace(url+"/newUser");
+}
+
 function signInOut() {
     textboxElement = document.getElementById("id")
     id = textboxElement.value;
@@ -23,8 +27,6 @@ function signInOut() {
 
     textElement = document.getElementById("checkinText")
 
-    
-    
     if(doesUserExist(id) == 1){
       if(isUserCheckedIn(id) == 1){
         checkUserOut(id, action);
@@ -38,6 +40,7 @@ function signInOut() {
     } else {
       textElement.innerText = "No user with ID:" + id;
     }
+    textboxElement.value = ''
 }
 
 function newUser(){

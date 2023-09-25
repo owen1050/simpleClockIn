@@ -5,7 +5,7 @@ class databaseQuerys:
 	con = -1
 
 	def __init__(self):
-		self.con = sqlite3.connect("testDB.db", check_same_thread=False)
+		self.con = sqlite3.connect("realDB.db", check_same_thread=False)
 		
 	def doesUserExist(self, id):
 		cur = self.con.cursor()

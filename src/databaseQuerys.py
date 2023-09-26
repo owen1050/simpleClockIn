@@ -87,3 +87,13 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in isUserCheckedIn", e)
 			return -1
+	def getUsersTimes(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM users where id = " + str(id))
+			ret = res.fetchall()
+			return ret
+			
+		except Exception as e:
+			print("error in getUsersTimes", e)
+			return -1

@@ -5,3 +5,4 @@
 - admin page to generate data and sign eveyone out
 - calculate times - might be easier to just dump to excel
 - make it pretty
+- work on at school

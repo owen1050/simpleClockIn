@@ -34,11 +34,16 @@ function signInOut() {
         textElement.innerText = "Checked out " + name;
       } else {
         checkUserIn(id);
-        name = getUserName(id);
+        name = getUserName(id, action);
         textElement.innerText = "Checked in " + name;
       }
     } else {
-      textElement.innerText = "No user with ID:" + id;
+      if(id == ''){
+        textElement.innerText = "Please enter ID";
+      }else
+      {
+        textElement.innerText = "No user with ID:" + id;
+      }
     }
     textboxElement.value = ''
 }
@@ -88,9 +93,9 @@ function isUserCheckedIn(id){
     return ret
 }
 
-function checkUserIn(id){
+function checkUserIn(id, action){
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", url + "/api/checkUserIn?id=" + id, false);
+    xhr.open("GET", url + "/api/checkUserIn?id=" + id + "&action=" + action, false);
     xhr.send();
     const data = xhr.response;
     console.log(data);

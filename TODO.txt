@@ -1,3 +1,7 @@
-2) read data (only specific users?)
-3) calculate times - might be easier to just dump to excel
-1) make it pretty
+- read data (only specific users?)
+- sign eveyone out at 4am
+	- get eveyone signed in
+	- manual sign eveyone out button? 
+- admin page to generate data and sign eveyone out
+- calculate times - might be easier to just dump to excel
+- make it pretty

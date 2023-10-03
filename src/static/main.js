@@ -33,7 +33,7 @@ function signInOut() {
         name = getUserName(id);
         textElement.innerText = "Checked out " + name;
       } else {
-        checkUserIn(id);
+        checkUserIn(id, action);
         name = getUserName(id, action);
         textElement.innerText = "Checked in " + name;
       }
@@ -67,11 +67,7 @@ function newUser(){
   
   }
 }
-//doesUserExist(id):
-//isUserCheckedIn(id):
-//checkUserIn(id):
-//checkUserOut(id):
-//createUser(id, name):
+
 function doesUserExist(id){
     ret = -1;
     const xhr = new XMLHttpRequest();

@@ -38,14 +38,15 @@ def apiIsUserCheckedIn():
 @app.route('/api/checkUserIn')
 def apiCheckUserIn():
 	id = int(request.args.get('id', default = -1))
-	checkedIn = db.checkUserIn(id)
+	action = request.args.get('action', default = 'checkIn')
+	checkedIn = db.checkUserIn(id, action)
 	print("checkUserIn:", id, checkedIn)
 	return str(checkedIn)
 
 @app.route('/api/checkUserOut')
 def apiCheckUserOut():
 	id = int(request.args.get('id', default = -1))
-	action = request.args.get('action', default = '')
+	action = request.args.get('action', default = 'checkOut')
 	checkedOut = db.checkUserOut(id, action)
 	print("checkUserOut:", id, action, checkedOut)
 	return str(checkedOut)

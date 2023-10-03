@@ -31,12 +31,12 @@ class databaseQuerys:
 			print("error in isUserCheckedIn", e)
 			return -1
 
-	def checkUserIn(self, id):
+	def checkUserIn(self, id, action):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', 'checkIn', {1})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', '{action}', {1})"
 			res = cur.execute(s)
 
 			self.con.commit()

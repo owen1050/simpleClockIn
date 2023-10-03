@@ -27,7 +27,7 @@ function signInOut() {
 
     textElement = document.getElementById("checkinText")
 
-    if(doesUserExist(id) == 1){
+    if(id != '' && doesUserExist(id) == 1){
       if(isUserCheckedIn(id) == 1){
         checkUserOut(id, action);
         name = getUserName(id);

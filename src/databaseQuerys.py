@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+from datetime import timedelta
 
 class databaseQuerys:
 
@@ -136,6 +137,46 @@ class databaseQuerys:
 				ret[user[0]] = thisUsersList
 			return ret
 			
+		except Exception as e:
+			print("error in getListOfUsers", e)
+			return -1
+
+	def ifUserCheckedInCheckOutAtPlusMinute(self, id):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute(f"SELECT MAX(time) from events where userID = {str(id)}")
+			time = res.fetchone()[0]
+
+			res = cur.execute("SELECT * FROM users where id = " + str(id))
+			ret = res.fetchone()
+
+			if(int(ret[2]) == 0):
+				return 0
+
+			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
+			ret = res.fetchone()
+
+			s = f"INSERT INTO events VALUES ({id},'{datetime.fromisoformat(str(time)) + timedelta(minutes=1)}', 'forced check out', {0})"
+			res = cur.execute(s)
+			self.con.commit()
+
+			return time
+			
+		except Exception as e:
+			print(f"error in ifUserCheckedInGetCheckedInTime for id:{id}", e)
+			return -1
+
+	def checkOutAllUsers(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM users")
+			ret = res.fetchall()
+			for r in ret:
+				id = r[0]
+				print("id:" , id)
+				self.ifUserCheckedInCheckOutAtPlusMinute(id)
+			return 0
+
 		except Exception as e:
 			print("error in getListOfUsers", e)
 			return -1

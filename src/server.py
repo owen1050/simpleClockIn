@@ -1,7 +1,7 @@
 from databaseQuerys import databaseQuerys
 from flask import Flask
 from flask import request
-
+from flask import send_file
 
 #doesUserExist(id):
 #isUserCheckedIn(id):
@@ -66,6 +66,16 @@ def apiCreateUser():
 	createdUser = db.createUser(id, name)
 	print("createUser:", id, name, createdUser)
 	return str(createdUser)
+
+@app.route('/image/background')
+def getBackgroundImage():
+	return send_file("static/background.png", mimetype='image/png')
+
+@app.route('/api/checkOutAllUsers')
+def checkOutAllUsers():
+	ret = db.checkOutAllUsers()
+	print("checkedOutAllUsers:", ret)
+	return str(ret)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

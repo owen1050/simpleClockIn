@@ -1,4 +1,5 @@
-import sqlite3, datetime
+import sqlite3
+from datetime import datetime
 
 class databaseQuerys:
 
@@ -36,7 +37,7 @@ class databaseQuerys:
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', '{action}', {1})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {1})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -53,7 +54,7 @@ class databaseQuerys:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.datetime.now()}', '{action}', {0})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {0})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -97,4 +98,44 @@ class databaseQuerys:
 			
 		except Exception as e:
 			print("error in getUsersTimes", e)
+			return -1
+
+	def getListOfUsers(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM users")
+			ret = res.fetchall()
+			return ret
+			
+		except Exception as e:
+			print("error in getListOfUsers", e)
+			return -1
+
+	def getAllUsersTimes(self):
+		cur = self.con.cursor()
+		try:
+			ret = {}
+			users = self.getListOfUsers()
+			for user in users:
+				thisUsersList = []
+				userEvents = self.getUsersTimes(user[0])
+				for index in range(len(userEvents)):
+					event = userEvents[index]
+					#print(event)
+					id = event[0]
+					time = event[1]
+					action = event[2]
+					signInOut = event[3]
+					datetimeOfTime = datetime.fromisoformat(time)
+
+					if(int(signInOut) == 0):
+						signInTime = datetime.fromisoformat(userEvents[index-1][1])
+						timeSpentCheckedIn = datetimeOfTime - signInTime
+						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn))
+						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
+				ret[user[0]] = thisUsersList
+			return ret
+			
+		except Exception as e:
+			print("error in getListOfUsers", e)
 			return -1

@@ -1,5 +1,7 @@
 from databaseQuerys import databaseQuerys
+from datetime import datetime
 
 db = databaseQuerys()
 
-print(db.getUsersTimes(1050))
+users = db.getAllUsersTimes()
+print(users)

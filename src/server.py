@@ -20,6 +20,10 @@ def main():
 def newUser():
 	return app.send_static_file('newUserPage.html')
 
+@app.route('/admin')
+def adminPage():
+	return app.send_static_file('admin.html')
+
 
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():
@@ -75,6 +79,12 @@ def getBackgroundImage():
 def checkOutAllUsers():
 	ret = db.checkOutAllUsers()
 	print("checkedOutAllUsers:", ret)
+	return str(ret)
+
+@app.route('/api/checkOutAllUsersNow')
+def checkOutAllUsersNow():
+	ret = db.checkOutAllUsersNow()
+	print("checkedOutAllUsersNow:", ret)
 	return str(ret)
 
 if __name__ == '__main__':

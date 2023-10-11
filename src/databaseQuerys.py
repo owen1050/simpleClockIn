@@ -59,7 +59,7 @@ class databaseQuerys:
 			res = cur.execute(s)
 
 			self.con.commit()
-
+			print(f"Checked out {id} at {datetime.now()} ")
 			return 0
 		except Exception as e:
 			print("error in checkUserOut", e)
@@ -175,6 +175,26 @@ class databaseQuerys:
 				id = r[0]
 				print("id:" , id)
 				self.ifUserCheckedInCheckOutAtPlusMinute(id)
+			return 0
+
+		except Exception as e:
+			print("error in getListOfUsers", e)
+			return -1
+
+	def checkOutAllUsersNow(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM users")
+			ret = res.fetchall()
+			for r in ret:
+				id = r[0]
+				res2 = cur.execute("SELECT * FROM users where id = " + str(id))
+				ret2 = res2.fetchone()
+
+				if(int(ret2[2]) == 0):
+					pass
+				else:
+					self.checkUserOut(id, "forced sign out")
 			return 0
 
 		except Exception as e:

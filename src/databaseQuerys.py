@@ -200,3 +200,13 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in getListOfUsers", e)
 			return -1
+
+	def writeUserTimesToFile(self):
+		try:
+			f = open("toSend.txt", "w")
+			f.write(str(self.getAllUsersTimes()))
+			f.close()
+			return 0
+		except Exception as e:
+			print("error in writeUserTimesToFile", e)
+			return -1

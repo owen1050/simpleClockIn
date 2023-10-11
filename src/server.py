@@ -87,5 +87,11 @@ def checkOutAllUsersNow():
 	print("checkedOutAllUsersNow:", ret)
 	return str(ret)
 
+@app.route('/api/download/getAllUsersTimes')
+def getAllUsersTimes():
+	ret = db.writeUserTimesToFile()
+	print("got getAllUsersTimes", ret)
+	return send_file("toSend.txt", download_name='userTimes.txt')
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

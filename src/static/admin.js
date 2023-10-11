@@ -1,5 +1,5 @@
-//url = "http://villawalsh.happyrobotics.com:3600"
-url = "http://localhost:5000"
+url = "http://villawalsh.happyrobotics.com:3600"
+//url = "http://localhost:5000"
 
 function gotoHome(){
   window.location.replace(url);
@@ -13,4 +13,9 @@ function checkOutAllUsers(){
     console.log(data);
     ret = parseInt(data);
     return ret
+}
+
+function downloadUserData(){
+    const xhr = new XMLHttpRequest();
+    window.location.replace(url + "/api/download/getAllUsersTimes");
 }

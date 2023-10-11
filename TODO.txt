@@ -1,9 +1,4 @@
-- read data (only specific users?)
-- sign eveyone out at 4am
-	- get eveyone signed in
+- admin page
 	- manual sign eveyone out button? 
-- admin page to generate data and sign eveyone out
-- calculate times - might be easier to just dump to excel
-
+	- export time data
 - make it pretty
-- work on at school

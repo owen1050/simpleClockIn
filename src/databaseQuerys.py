@@ -1,6 +1,7 @@
-import sqlite3
+import sqlite3, openpyxl
 from datetime import datetime
 from datetime import timedelta
+
 
 class databaseQuerys:
 
@@ -203,9 +204,29 @@ class databaseQuerys:
 
 	def writeUserTimesToFile(self):
 		try:
-			f = open("toSend.txt", "w")
-			f.write(str(self.getAllUsersTimes()))
-			f.close()
+			t = self.getAllUsersTimes()
+
+			wb = openpyxl.Workbook()
+			letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+			sheet = wb.active
+
+			sheet['A1'] = 'Name'
+			sheet['B1'] = 'ID'
+			sheet['C1'] = 'Date'
+			sheet['D1'] = 'TimeSpent'
+
+			row = 2
+			for user in t:
+				name = self.getUserName(user)
+				for events in t[user]:
+					sheet["A" + str(row)] = name
+					sheet["B" + str(row)] = user
+					sheet["C" + str(row)] = events[0].strftime("%m/%d/%Y")
+					sheet["D" + str(row)] = str(events[1])
+					row = row + 1
+			wb.save("data.xls")
+			return str(t)
+
 			return 0
 		except Exception as e:
 			print("error in writeUserTimesToFile", e)

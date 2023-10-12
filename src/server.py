@@ -91,7 +91,7 @@ def checkOutAllUsersNow():
 def getAllUsersTimes():
 	ret = db.writeUserTimesToFile()
 	print("got getAllUsersTimes", ret)
-	return send_file("toSend.txt", download_name='userTimes.txt')
+	return send_file("data.xls", download_name='data.xls')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

@@ -24,3 +24,7 @@ function downloadUserData(){
     text = document.getElementById("checkinText")
     text.innerText = "Data downloaded";
 }
+
+function goHome(){
+  window.location.replace(url);
+}

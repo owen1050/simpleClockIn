@@ -23,8 +23,9 @@ function gotoAdmin(){
 }
 
 function signInOut() {
-    textboxElement = document.getElementById("id")
+    textboxElement = document.getElementById("id");
     id = textboxElement.value;
+    
     if(id == 'admin'){
       gotoAdmin()
     }else{
@@ -43,6 +44,7 @@ function signInOut() {
           name = getUserName(id, action);
           textElement.innerText = "Checked in " + name;
         }
+        updateUsersList()
       } else {
         if(id == ''){
           textElement.innerText = "Please enter ID";
@@ -117,4 +119,29 @@ function createUser(id, name){
     console.log(data);
     ret = parseInt(data);
     return ret
+}
+
+function getAllUsers(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getAllUsers", false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+}
+
+function updateUsersList() {
+  listTextElement = document.getElementById("listText");
+  listStr = ""
+  users = getAllUsers();
+  for(let i = 0; i < users.length; i++){
+    
+    if(users[i][2] == 1){
+      listStr = listStr + users[i][1] + ", "
+    }
+  }
+  if(listStr.slice(-1) == ' '){
+    listStr = listStr.substring(0, listStr.length - 2) + "."
+  }
+  listTextElement.innerText = "Users checked in:\n" + listStr
 }

@@ -3,7 +3,7 @@
 	<head>
 		<title>8513 Sign In</title>
 	</head>
-<body>
+<body onload="updateUsersList()">
 
 <h1>8513 Sign In</h1>
 
@@ -14,6 +14,8 @@
 <button type="button" id="buttonID" onclick="signInOut()">Clock in/out</button>
 <br><br>
 <h2 id="checkinText">Waiting to check in</h2>
+
+<h4 id="listText">Users checked in:</h4>
 
 <br><br>
 <button type="button" id="newID" onclick="gotoNew()">No ID? Create new user here</button>

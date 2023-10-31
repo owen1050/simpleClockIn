@@ -3,11 +3,7 @@ from flask import Flask
 from flask import request
 from flask import send_file
 
-#doesUserExist(id):
-#isUserCheckedIn(id):
-#checkUserIn(id):
-#checkUserOut(id):
-#createUser(id, name):
+import json
 
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
@@ -92,6 +88,12 @@ def getAllUsersTimes():
 	ret = db.writeUserTimesToFile()
 	print("got getAllUsersTimes", ret)
 	return send_file("data.xls", download_name='data.xls')
+
+@app.route('/api/getAllUsers')
+def getListOfUsers():
+	ret = json.dumps(db.getListOfUsers())
+	print("getALlusers:", ret)
+	return str(ret)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

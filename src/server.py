@@ -2,8 +2,10 @@ from databaseQuerys import databaseQuerys
 from flask import Flask
 from flask import request
 from flask import send_file
+from threading import Thread
 
-import json
+
+import json, time, requests
 
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
@@ -94,6 +96,21 @@ def getListOfUsers():
 	ret = json.dumps(db.getListOfUsers())
 	print("getALlusers:", ret)
 	return str(ret)
+
+@app.route('/owen/flashLights')
+def flashLights():
+	thread = Thread(target = flashLightsFunc)
+	thread.start()
+	return str("done")
+
+def flashLightsFunc():
+	for i in range(4):
+		#on lightson https://maker.ifttt.com/trigger/lightson/json/with/key/Bf91G_MsjKUzsWqRs5N7n
+		requests.get('https://maker.ifttt.com/trigger/lightson/json/with/key/Bf91G_MsjKUzsWqRs5N7n')
+		time.sleep(1)
+		#off https://maker.ifttt.com/trigger/Lightsoff/with/key/Bf91G_MsjKUzsWqRs5N7n
+		requests.get('https://maker.ifttt.com/trigger/Lightsoff/with/key/Bf91G_MsjKUzsWqRs5N7n')
+		time.sleep(1)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

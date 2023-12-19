@@ -55,6 +55,8 @@ function signInOut() {
       }
       textboxElement.value = ''
     }
+    textboxElement.focus();
+    textboxElement.select();
 
     
 }

@@ -1,0 +1,32 @@
+h1 {
+	text-align: center; 
+	font-family: cursive;
+	color:#6B9560;
+}
+body {
+	background-color: #753EBD;
+}
+h2{
+color:#6B9560;
+font-family: cursive;
+}
+h4{
+color:#6B9560;
+font-family: cursive;
+}
+button{
+	color:black;
+	font-family: cursive;
+}
+input{
+	color:black;
+	font-family: cursive;
+}
+img{
+	float:right;
+	height:500px;
+	width:1000px;
+}
+u{
+color:#6B9560;	
+}

@@ -1,0 +1,46 @@
+h1 {
+	text-align: center; 
+	font-family: cursive;
+	color:#6B9560;
+	background-color: black;
+}
+body {
+	background-color: #753EBD;
+}
+h2{
+color:#6B9560;
+font-family: cursive;
+background-color: black;
+}
+h4{
+color:#6B9560;
+font-family: cursive;
+background-color: black;
+}
+button{
+	color:black;
+	font-family: cursive;
+	border-color: black;
+	border-width: 10px;
+}
+input{
+	color:black;
+	border-color: black;
+	border-width: 10px;
+	font-family: cursive;
+}
+img{
+	float:right;
+	height:500px;
+	width:1000px;
+}
+u{
+color:#6B9560;	
+}
+text{
+	color: black;
+}
+p{
+	color:#6B9560;
+	font-family: cursive;
+}

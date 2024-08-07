@@ -7,11 +7,11 @@
 <body onload="updateUsersList()">
 
 <h1><u>8513 Sign In<u></h1>
-<img class="grouppic" src="C:\Users\siste\Documents\GitHub\simpleClockIn\src\static\GroupPic.jpg" alt="Image description"/>
-<input type="text" id="id" name="idBox" placeholder="Enter pin to sign in">
+
+<input type="text" id="id" name="idBox" placeholder="Enter pin to sign in" onkeyup="signInTextChanged()">
 <br>
 <br>
-<input type="text" id="idAction" name="actionBox" placeholder="What were you working on?">
+<input type="text" id="idAction" name="actionBox" placeholder="What were you working on?" style="display:none;">
 <br><br>
 <button type="button" id="buttonID" onclick="signInOut()">Clock in/out</button>
 <br><br>

@@ -1,5 +1,6 @@
-url = "http://villawalsh.happyrobotics.com:3600"
-//url = "http://localhost:5000"
+//url = "http://villawalsh.happyrobotics.com:3600"
+url = "http://localhost:5000"
+
 
 // Execute a function when the user presses a key on the keyboard
 var input = document.getElementById("id");
@@ -146,4 +147,14 @@ function updateUsersList() {
     listStr = listStr.substring(0, listStr.length - 2) + "."
   }
   listTextElement.innerText = "Users checked in:\n" + listStr
+}
+
+function signInTextChanged() {
+  textboxElement = document.getElementById("id");
+  id = textboxElement.value;
+  if(doesUserExist(id)){
+    document.getElementById("idAction").style.display = ''
+  } else {
+    document.getElementById("idAction").style.display = 'none'
+  }
 }

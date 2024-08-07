@@ -1,4 +1,2 @@
-- admin page
-	- manual sign eveyone out button? 
-	- export time data
+- fix all back buttons
 - make it pretty

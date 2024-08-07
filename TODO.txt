@@ -1,2 +1,34 @@
-- fix all back buttons
-- make it pretty
+Main Page:
+	- type in code
+	- on sucessful code, display name, 
+		if signed out
+			sign in button, hours page button
+		if signed in
+			dropdown of what you worked on
+				if other, or at home selected, textbox to type what you did
+Hours page:
+	- dropdown build or business
+	- their status
+	- table of each category, number of required hours.
+	- table of sign ins for that category
+	- list of all sign ins
+
+Admin Page:
+	- Total build hours
+	- Total TD  hours
+	- table of all categories, and their weights, and how many hours you need in that category for P, JV, V
+		- editable, and can add new row
+		- save button
+	- dropdown of all users
+		- when one selected, table of all hours (date, category, length, text)
+		- edit length of sign in via textbox
+		- manuall add sign in time
+		- save button
+
+Categories
+	- Build Summer training
+	- Business meeting
+	- Business work at home
+	- Build work session
+	- Competition
+	- Start of year meeting

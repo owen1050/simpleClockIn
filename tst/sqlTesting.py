@@ -10,6 +10,6 @@ import json, time, requests
 
 db = databaseQuerys()
 
-ret = db.getAllUsersTimes()
+ret = db.setHoursForCategory(1,22.5)
 
 print(ret)

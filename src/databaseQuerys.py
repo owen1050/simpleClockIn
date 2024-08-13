@@ -241,3 +241,14 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in writeUserTimesToFile", e)
 			return -1
+
+	def setHoursForCategory(self, id, hours):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute(f"UPDATE categories SET hours='{hours}' WHERE id = '{id}'")
+			ret = res.fetchone()
+			self.con.commit()
+			return 0
+		except Exception as e:
+			print("error in setHoursForCategory", e)
+			return -1

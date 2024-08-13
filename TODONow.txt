@@ -13,21 +13,11 @@ Main Page:
 Hours page:
 	- dropdown build or business
 	- their status
-	- table of each category, number of required hours.
-	- table of sign ins for that category
+	- table of categories, number of required hours for each, their current number of hours
 	- list of all sign ins
 
 Admin Page:
-	- Total build hours
-	- Total TD  hours
-	- table of all categories, and their weights, and how many hours you need in that category for P, JV, V
-		- editable, and can add new row
-		- save button
-	- dropdown of all users
-		- when one selected, table of all hours (date, category, length, text)
-		- edit length of sign in via textbox
-		- manuall add sign in time
-		- save button
+	- view all categories, set number of hours for each
 
 Categories
 	- Build Summer training

@@ -6,8 +6,7 @@ Main Page:
 Hours page:
 	- dropdown build or business
 	- their status
-	- table of categories, number of required hours for each, their current number of hours
-	- list of all sign ins
+	- update tables
 
 Admin Page:
 	- view all categories, set number of hours for each

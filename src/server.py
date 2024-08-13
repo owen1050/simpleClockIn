@@ -22,6 +22,10 @@ def newUser():
 def adminPage():
 	return app.send_static_file('admin.html')
 
+@app.route('/hours')
+def hoursPage():
+	return app.send_static_file('hours.html')
+
 
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():

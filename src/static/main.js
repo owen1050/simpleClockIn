@@ -14,6 +14,31 @@ input.addEventListener("keypress", function(event) {
   }
 });
 
+var input = document.getElementById("idAction");
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("buttonID").click();
+  }
+});
+
+var gUsers;
+var gCategories = getAllCategories();
+var select = document.getElementById("categoryList");
+
+for (var i = 0; i<gCategories.length; i++){
+    var opt = document.createElement('option');
+    opt.value = gCategories[i][0];
+    opt.innerHTML = gCategories[i][8];
+    select.appendChild(opt);
+}
+
+
+
+
 
 function gotoNew(){
   window.location.replace(url+"/newUser");
@@ -37,11 +62,11 @@ function signInOut() {
 
       if(id != '' && doesUserExist(id) == 1){
         if(isUserCheckedIn(id) == 1){
-          checkUserOut(id, action);
+          checkUserOut(id, action, select.value);
           name = getUserName(id);
           textElement.innerText = "Checked out " + name;
         } else {
-          checkUserIn(id, action);
+          checkUserIn(id, "SignIn");
           name = getUserName(id, action);
           textElement.innerText = "Checked in " + name;
         }
@@ -54,6 +79,7 @@ function signInOut() {
           textElement.innerText = "No user with ID:" + id;
         }
       }
+      actionElement.value = ''
       textboxElement.value = ''
     }
     textboxElement.focus();
@@ -74,6 +100,15 @@ function doesUserExist(id){
     return ret
 }
 
+function doesUserExistLocal(id){
+  for(let i = 0; i < gUsers.length; i++){
+    if(gUsers[i][0] == id){
+      return 1;
+    }
+  }
+  return 0
+}
+
 function isUserCheckedIn(id){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/isUserCheckedIn?id=" + id, false);
@@ -84,7 +119,7 @@ function isUserCheckedIn(id){
     return ret
 }
 
-function checkUserIn(id, action){
+function checkUserIn(id, action, category){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/checkUserIn?id=" + id + "&action=" + action, false);
     xhr.send();
@@ -94,9 +129,9 @@ function checkUserIn(id, action){
     return ret
 }
 
-function checkUserOut(id, action){
+function checkUserOut(id, action, category){
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", url + "/api/checkUserOut?id=" + id + "&action=" + action, false);
+    xhr.open("GET", url + "/api/checkUserOut?id=" + id + "&action=" + action+"&cat=" + category, false);
     xhr.send();
     const data = xhr.response;
     console.log(data);
@@ -133,10 +168,20 @@ function getAllUsers(){
     return data
 }
 
+function getAllCategories(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getAllCategories", false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+}
+
 function updateUsersList() {
   listTextElement = document.getElementById("listText");
   listStr = ""
   users = getAllUsers();
+  gUsers = users;
   for(let i = 0; i < users.length; i++){
     
     if(users[i][2] == 1){
@@ -152,9 +197,25 @@ function updateUsersList() {
 function signInTextChanged() {
   textboxElement = document.getElementById("id");
   id = textboxElement.value;
-  if(doesUserExist(id)){
-    document.getElementById("idAction").style.display = ''
+  if(doesUserExistLocal(id)){
+    if(isUserCheckedIn(id)){
+
+      document.getElementById("idAction").style.display = ''
+      document.getElementById("categoryList").style.display = ''
+    }else{
+
+      document.getElementById("idAction").style.display = 'none'
+
+     document.getElementById("categoryList").style.display = 'none'
+    }
+    
+
+    document.getElementById("buttonID").style.display = ''
+    
   } else {
     document.getElementById("idAction").style.display = 'none'
+    document.getElementById("categoryList").style.display = 'none'
+
+    document.getElementById("buttonID").style.display = 'none'
   }
 }

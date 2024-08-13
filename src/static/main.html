@@ -7,33 +7,25 @@
 <body onload="updateUsersList()">
 
 <h1><u>8513 Sign In<u></h1>
+<h2 id="checkinText">Waiting to check in</h2>
 
 <input type="text" id="id" name="idBox" placeholder="Enter pin to sign in" onkeyup="signInTextChanged()">
 <br>
+  <select name="Categories" id="categoryList" style="display:none;">
+    <option value="0">Other</option>
+  </select>
 <br>
 <input type="text" id="idAction" name="actionBox" placeholder="What were you working on?" style="display:none;">
 <br><br>
-<button type="button" id="buttonID" onclick="signInOut()">Clock in/out</button>
+<button type="button" id="buttonID" onclick="signInOut()" style="display:none;">Clock in/out</button>
 <br><br>
-<h2 id="checkinText">Waiting to check in</h2>
+
 
 <h4 id="listText">Users checked in:</h4>
 
-<br><br>
+<br>
 <button type="button" id="newID" onclick="gotoNew()">No ID? Create new user here</button>
 <br>
-<br>
-<br>
-<p> "I DONT KNOW WHAT IM DOING" - Mr. Busler</p>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<p>Website made by: Karina Siegel '26, Lynette Gao '25, Anna Collins '25</p>
 <script src="main.js"></script>
 </body>
 </html>

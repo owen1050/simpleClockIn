@@ -41,7 +41,8 @@ def apiIsUserCheckedIn():
 def apiCheckUserIn():
 	id = int(request.args.get('id', default = -1))
 	action = request.args.get('action', default = 'checkIn')
-	checkedIn = db.checkUserIn(id, action)
+	category = request.args.get('cat', default = '-1')
+	checkedIn = db.checkUserIn(id, action, category)
 	print("checkUserIn:", id, checkedIn)
 	return str(checkedIn)
 
@@ -49,8 +50,9 @@ def apiCheckUserIn():
 def apiCheckUserOut():
 	id = int(request.args.get('id', default = -1))
 	action = request.args.get('action', default = 'checkOut')
-	checkedOut = db.checkUserOut(id, action)
-	print("checkUserOut:", id, action, checkedOut)
+	category = request.args.get('cat', default = '-1')
+	checkedOut = db.checkUserOut(id, action, category)
+	print("checkUserOut:", id, action, checkedOut, category)
 	return str(checkedOut)
 
 @app.route('/api/getUserName')
@@ -95,6 +97,12 @@ def getAllUsersTimes():
 def getListOfUsers():
 	ret = json.dumps(db.getListOfUsers())
 	print("getALlusers:", ret)
+	return str(ret)
+
+@app.route('/api/getAllCategories')
+def getAllCategories():
+	ret = json.dumps(db.getAllCategories())
+	print("getAllCategories:", ret)
 	return str(ret)
 
 @app.route('/owen/flashLights')

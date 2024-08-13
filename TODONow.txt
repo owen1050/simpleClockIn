@@ -1,15 +1,8 @@
 Main Page:
-	- on load cache all ids and user names
-	- type in code
 	- on sucessful code, display name, 
 		if signed out
-			sign in button, hours page button
-		if signed in
-			dropdown of categories
-				after category selected, put cursor in action box.
-					in action box
-						if enter pressed submit user, keep category same, cursor in ID box
-						
+			hours page button
+			
 Hours page:
 	- dropdown build or business
 	- their status

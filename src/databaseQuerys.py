@@ -34,12 +34,12 @@ class databaseQuerys:
 			print("error in isUserCheckedIn", e)
 			return -1
 
-	def checkUserIn(self, id, action):
+	def checkUserIn(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {1})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {1})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -50,17 +50,16 @@ class databaseQuerys:
 			return -1
 		
 
-	def checkUserOut(self, id, action):
+	def checkUserOut(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {0})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {0})"
 			res = cur.execute(s)
 
 			self.con.commit()
-			print(f"Checked out {id} at {datetime.now()} ")
 			return 0
 		except Exception as e:
 			print("error in checkUserOut", e)
@@ -113,6 +112,17 @@ class databaseQuerys:
 			print("error in getListOfUsers", e)
 			return -1
 
+	def getAllCategories(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM categories")
+			ret = res.fetchall()
+			return ret
+			
+		except Exception as e:
+			print("error in getAllCategories", e)
+			return -1
+
 	def getAllUsersTimes(self):
 		cur = self.con.cursor()
 		try:
@@ -127,7 +137,7 @@ class databaseQuerys:
 					id = event[0]
 					time = event[1]
 					action = event[2]
-					signInOut = event[3]
+					signInOut = event[4]
 					datetimeOfTime = datetime.fromisoformat(time)
 
 					if(int(signInOut) == 0):

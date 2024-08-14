@@ -38,7 +38,11 @@ for (var i = 0; i<gCategories.length; i++){
 
 
 
-
+function gotoHours(){
+  textboxElement = document.getElementById("id");
+  id = textboxElement.value;
+  window.location.replace(url+"/hours?id=" + id);
+}
 
 function gotoNew(){
   window.location.replace(url+"/newUser");
@@ -84,6 +88,7 @@ function signInOut() {
     }
     textboxElement.focus();
     textboxElement.select();
+    signInTextChanged();
 
     
 }
@@ -197,25 +202,28 @@ function updateUsersList() {
 function signInTextChanged() {
   textboxElement = document.getElementById("id");
   id = textboxElement.value;
+  if(id == ''){
+    hideButtons();
+  }
   if(doesUserExistLocal(id)){
     if(isUserCheckedIn(id)){
-
       document.getElementById("idAction").style.display = ''
       document.getElementById("categoryList").style.display = ''
+      document.getElementById("hoursButtonID").style.display = ''
     }else{
-
       document.getElementById("idAction").style.display = 'none'
-
-     document.getElementById("categoryList").style.display = 'none'
+      document.getElementById("categoryList").style.display = 'none'
     }
-    
-
     document.getElementById("buttonID").style.display = ''
     
-  } else {
+    } else {
+      hideButtons();
+    }
+  }
+
+  function hideButtons(){
     document.getElementById("idAction").style.display = 'none'
     document.getElementById("categoryList").style.display = 'none'
-
     document.getElementById("buttonID").style.display = 'none'
+    document.getElementById("hoursButtonID").style.display = 'none'
   }
-}

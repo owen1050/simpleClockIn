@@ -91,6 +91,13 @@ def checkOutAllUsersNow():
 	print("checkedOutAllUsersNow:", ret)
 	return str(ret)
 
+@app.route('/api/getUserTimes')
+def getUserTimes():
+	id = int(request.args.get('id', default = -1))
+	ret = db.getUsersTimes(id)
+	print("getUserTimes:", ret)
+	return str(ret)
+
 @app.route('/api/download/getAllUsersTimes')
 def getAllUsersTimes():
 	ret = db.writeUserTimesToFile()

@@ -1,4 +1,5 @@
 Main Page:
+	- look pretty
 	- on load cache all ids and user names
 	- type in code
 	- on sucessful code, display name, 
@@ -11,6 +12,7 @@ Main Page:
 						if enter pressed submit user, keep category same, cursor in ID box
 						
 Hours page:
+	- look pretty
 	- dropdown build or business
 	- their status
 	- table of each category, number of required hours.

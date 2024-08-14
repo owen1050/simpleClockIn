@@ -1,12 +1,7 @@
-Main Page:
-	- on sucessful code, display name, 
-		if signed out
-			hours page button
-			
 Hours page:
-	- dropdown build or business
+	- calculate status based off each column
 	- their status
-	- update tables
+	- get number of hours in each category
 
 Admin Page:
 	- view all categories, set number of hours for each

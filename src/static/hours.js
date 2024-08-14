@@ -2,8 +2,8 @@
 url = "http://localhost:5000"
 
 var id = new URLSearchParams(window.location.search).get('id')
-let signIns = getUserTimes(id)
-let categories = getAllCategories()
+var signIns = getUserTimes(id)
+var categories = getAllCategories()
 let totalHours = 0;
 
 var catToColMap = new Map();
@@ -19,12 +19,6 @@ catToColMap.set(9,7);
 var catTable = document.getElementById("categoryTableID")
 cols = catTable.rows[0].cells.length
 var statusText = document.getElementById("statusText")
-
-//row numbers
-newRow = catTable.insertRow(catTable.rows.length)
-for(let i = 0; i < cols; i++){
-	newRow.insertCell(i).innerHTML = i;
-}
 
 var busStatus = []
 var buildStatus = []
@@ -134,8 +128,18 @@ for(let i = 0; i < buildStatus.length; i++){
 
 statusText.innerHTML = "Total Hours: " + totalHours + ". Build Varsity Status: " + lowestBuildStatus + ". Business Varsity Status: " + lowestStatus + ".    "
 
-console.log("BusStatus:" + lowestStatus)
-console.log("BuildStatus:" + lowestBuildStatus)
+var eventTable = document.getElementById("hoursTableID")
+cols = eventTable.rows[0].cells.length
+
+for(let row = 0; row < signIns.length; row++){
+    newRow = eventTable.insertRow(eventTable.rows.length);
+    
+    newRow.insertCell(0).innerHTML = signIns[row][1] + "/" + signIns[row][2] + "/" + signIns[row][0];
+    newRow.insertCell(1).innerHTML = Math.round(signIns[row][3]/3600 * 100) / 100;
+    newRow.insertCell(2).innerHTML = getCategoryNameFromID(signIns[row][4])
+    newRow.insertCell(3).innerHTML = signIns[row][5]
+}
+
 
 
 function getHoursInCategory(catId){
@@ -170,7 +174,7 @@ function getUserTimes(idi){
         } else {
             catId = tmp[4]
         }
-        cleanEvents.push([year, month, day, seconds, catId])
+        cleanEvents.push([year, month, day, seconds, catId, tmp[5]])
     }
     console.log(cleanEvents)
     return cleanEvents
@@ -183,4 +187,12 @@ function getAllCategories(){
     const data = JSON.parse(xhr.response);
     console.log(data);
     return data
+}
+
+function getCategoryNameFromID(id){
+    for(let i = 0; i < categories.length; i++){
+        if(categories[i][0] == id){
+            return categories[i][8]
+        }
+    }
 }

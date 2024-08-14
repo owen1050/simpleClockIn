@@ -1,6 +1,3 @@
-Admin Page:
-	- view all categories, set number of hours for each
-
 Migration:
 	- backup old db, move to stale branch
 	- copy IDs

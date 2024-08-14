@@ -75,6 +75,15 @@ def apiCreateUser():
 	print("createUser:", id, name, createdUser)
 	return str(createdUser)
 
+@app.route('/api/setHoursForCategory')
+def setHoursForCategory():
+	id = int(request.args.get('id', default = -1))
+	hours = request.args.get('hours', default = 0)
+
+	reply = db.setHoursForCategory(id, hours)
+	print("setHoursForCategory:", id, hours, reply)
+	return str(reply)
+
 @app.route('/image/background')
 def getBackgroundImage():
 	return send_file("static/background.png", mimetype='image/png')
@@ -115,6 +124,8 @@ def getAllCategories():
 	ret = json.dumps(db.getAllCategories())
 	print("getAllCategories:", ret)
 	return str(ret)
+
+
 
 @app.route('/owen/flashLights')
 def flashLights():

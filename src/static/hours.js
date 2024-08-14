@@ -18,6 +18,7 @@ catToColMap.set(9,7);
 var catTable = document.getElementById("categoryTableID")
 cols = catTable.rows[0].cells.length
 
+//row numbers
 newRow = catTable.insertRow(catTable.rows.length)
 for(let i = 0; i < cols; i++){
 	newRow.insertCell(i).innerHTML = i;
@@ -49,7 +50,7 @@ function getHoursInCategory(catId){
 
     for(let i = 0; i < signIns.length; i++){
         if(signIns[i][4] == catId){
-            time = time + signIns[i][3];
+            time = Number(time) + Number(signIns[i][3]);
         }
     }
     return time
@@ -78,6 +79,7 @@ function getUserTimes(idi){
         }
         cleanEvents.push([year, month, day, seconds, catId])
     }
+    console.log(cleanEvents)
     return cleanEvents
 }
 

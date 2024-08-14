@@ -8,13 +8,33 @@ Table users {
 Table events {
   userId integer
   time timestamp
+  category integer
   action text
   checkIn integer
 }
 
+Table envVars {
+  id integer
+  name text
+  value text
+}
+
+Table categories {
+  id integer
+  hours real
+  buildVarsityPer real
+  buildJVPer real
+  buildParPer real
+  busVarsityPer real
+  busJVPer real
+  busParPer real
+  name text
+  weight real
+}
 
 
 Ref: users.id < events.userId
+Ref : events.category < categories.id
 
 
 https://dbdiagram.io/d

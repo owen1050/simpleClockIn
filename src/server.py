@@ -22,6 +22,10 @@ def newUser():
 def adminPage():
 	return app.send_static_file('admin.html')
 
+@app.route('/hours')
+def hoursPage():
+	return app.send_static_file('hours.html')
+
 
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():
@@ -41,7 +45,8 @@ def apiIsUserCheckedIn():
 def apiCheckUserIn():
 	id = int(request.args.get('id', default = -1))
 	action = request.args.get('action', default = 'checkIn')
-	checkedIn = db.checkUserIn(id, action)
+	category = request.args.get('cat', default = '-1')
+	checkedIn = db.checkUserIn(id, action, category)
 	print("checkUserIn:", id, checkedIn)
 	return str(checkedIn)
 
@@ -49,8 +54,9 @@ def apiCheckUserIn():
 def apiCheckUserOut():
 	id = int(request.args.get('id', default = -1))
 	action = request.args.get('action', default = 'checkOut')
-	checkedOut = db.checkUserOut(id, action)
-	print("checkUserOut:", id, action, checkedOut)
+	category = request.args.get('cat', default = '-1')
+	checkedOut = db.checkUserOut(id, action, category)
+	print("checkUserOut:", id, action, checkedOut, category)
 	return str(checkedOut)
 
 @app.route('/api/getUserName')
@@ -69,6 +75,15 @@ def apiCreateUser():
 	print("createUser:", id, name, createdUser)
 	return str(createdUser)
 
+@app.route('/api/setHoursForCategory')
+def setHoursForCategory():
+	id = int(request.args.get('id', default = -1))
+	hours = request.args.get('hours', default = 0)
+
+	reply = db.setHoursForCategory(id, hours)
+	print("setHoursForCategory:", id, hours, reply)
+	return str(reply)
+
 @app.route('/image/background')
 def getBackgroundImage():
 	return send_file("static/background.png", mimetype='image/png')
@@ -85,6 +100,13 @@ def checkOutAllUsersNow():
 	print("checkedOutAllUsersNow:", ret)
 	return str(ret)
 
+@app.route('/api/getUserTimes')
+def getUserTimes():
+	id = int(request.args.get('id', default = -1))
+	ret = db.getOneUsersTimes(id)
+	print("getUserTimes:", ret)
+	return str(ret)
+
 @app.route('/api/download/getAllUsersTimes')
 def getAllUsersTimes():
 	ret = db.writeUserTimesToFile()
@@ -96,6 +118,14 @@ def getListOfUsers():
 	ret = json.dumps(db.getListOfUsers())
 	print("getALlusers:", ret)
 	return str(ret)
+
+@app.route('/api/getAllCategories')
+def getAllCategories():
+	ret = json.dumps(db.getAllCategories())
+	print("getAllCategories:", ret)
+	return str(ret)
+
+
 
 @app.route('/owen/flashLights')
 def flashLights():

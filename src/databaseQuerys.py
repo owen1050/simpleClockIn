@@ -34,12 +34,12 @@ class databaseQuerys:
 			print("error in isUserCheckedIn", e)
 			return -1
 
-	def checkUserIn(self, id, action):
+	def checkUserIn(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {1})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {1})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -50,17 +50,16 @@ class databaseQuerys:
 			return -1
 		
 
-	def checkUserOut(self, id, action):
+	def checkUserOut(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {0})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {0})"
 			res = cur.execute(s)
 
 			self.con.commit()
-			print(f"Checked out {id} at {datetime.now()} ")
 			return 0
 		except Exception as e:
 			print("error in checkUserOut", e)
@@ -113,6 +112,17 @@ class databaseQuerys:
 			print("error in getListOfUsers", e)
 			return -1
 
+	def getAllCategories(self):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("SELECT * FROM categories")
+			ret = res.fetchall()
+			return ret
+			
+		except Exception as e:
+			print("error in getAllCategories", e)
+			return -1
+
 	def getAllUsersTimes(self):
 		cur = self.con.cursor()
 		try:
@@ -127,7 +137,7 @@ class databaseQuerys:
 					id = event[0]
 					time = event[1]
 					action = event[2]
-					signInOut = event[3]
+					signInOut = event[4]
 					datetimeOfTime = datetime.fromisoformat(time)
 
 					if(int(signInOut) == 0):
@@ -137,6 +147,33 @@ class databaseQuerys:
 						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
 				ret[user[0]] = thisUsersList
 			return ret
+			
+		except Exception as e:
+			print("error in getListOfUsers", e)
+			return -1
+
+	def getOneUsersTimes(self, id):
+		cur = self.con.cursor()
+		try:
+			thisUsersList = []
+			userEvents = self.getUsersTimes(id)
+			for index in range(len(userEvents)):
+				event = userEvents[index]
+				#print(event)
+				id = event[0]
+				time = event[1]
+				action = event[2]
+				category = event[3]
+				signInOut = event[4]
+				datetimeOfTime = datetime.fromisoformat(time)
+
+				if(int(signInOut) == 0):
+					signInTime = datetime.fromisoformat(userEvents[index-1][1])
+					timeSpentCheckedIn = datetimeOfTime - signInTime
+					thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn.total_seconds(), category, action))
+					#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
+				
+			return thisUsersList
 			
 		except Exception as e:
 			print("error in getListOfUsers", e)
@@ -230,4 +267,15 @@ class databaseQuerys:
 			return 0
 		except Exception as e:
 			print("error in writeUserTimesToFile", e)
+			return -1
+
+	def setHoursForCategory(self, id, hours):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute(f"UPDATE categories SET hours='{hours}' WHERE id = '{id}'")
+			ret = res.fetchone()
+			self.con.commit()
+			return 0
+		except Exception as e:
+			print("error in setHoursForCategory", e)
 			return -1

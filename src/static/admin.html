@@ -5,7 +5,36 @@
 	</head>
 <body>
 
+	<style>
+		table {
+		  font-family: arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		td, th {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
+
+		tr:nth-child(even) {
+		  background-color: #dddddd;
+		}
+	</style>
+
 <h1>8513 Admin Page</h1>
+<br>
+
+<table id="category">
+  <tr>
+    <th>Category</th>
+    <th>Hours</th>
+    <th>ID</th>
+  </tr>
+</table>
+<button type="button" id="updateHoursBUtton" onclick="updateAllHours()">Update All Hours</button>
+
 <br>
 <h3 id="checkinText">Click button to perform action</h3>
 

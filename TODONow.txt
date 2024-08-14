@@ -1,0 +1,10 @@
+Migration:
+	- add in summer hours
+
+Categories
+	- Build Summer training
+	- Business meeting
+	- Business work at home
+	- Build work session
+	- Competition
+	- Start of year meeting

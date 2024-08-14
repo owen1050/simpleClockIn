@@ -1,6 +1,4 @@
 Migration:
-	- backup old db, move to stale branch
-	- copy IDs
 	- add in summer hours
 
 Categories

@@ -152,6 +152,33 @@ class databaseQuerys:
 			print("error in getListOfUsers", e)
 			return -1
 
+	def getOneUsersTimes(self, id):
+		cur = self.con.cursor()
+		try:
+			thisUsersList = []
+			userEvents = self.getUsersTimes(id)
+			for index in range(len(userEvents)):
+				event = userEvents[index]
+				#print(event)
+				id = event[0]
+				time = event[1]
+				action = event[2]
+				category = event[3]
+				signInOut = event[4]
+				datetimeOfTime = datetime.fromisoformat(time)
+
+				if(int(signInOut) == 0):
+					signInTime = datetime.fromisoformat(userEvents[index-1][1])
+					timeSpentCheckedIn = datetimeOfTime - signInTime
+					thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn.total_seconds(), category))
+					#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
+				
+			return thisUsersList
+			
+		except Exception as e:
+			print("error in getListOfUsers", e)
+			return -1
+
 	def ifUserCheckedInCheckOutAtPlusMinute(self, id):
 		cur = self.con.cursor()
 		try:

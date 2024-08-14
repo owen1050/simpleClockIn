@@ -10,6 +10,6 @@ import json, time, requests
 
 db = databaseQuerys()
 
-ret = db.writeUserTimesToFile()
+ret = db.getOneUsersTimes(1)
 
 print(ret)

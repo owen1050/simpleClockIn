@@ -1,10 +1,15 @@
 Hours page:
 	- calculate status based off each column
-	- their status
-	- get number of hours in each category
+	- their var/jv status
+	- list all events
 
 Admin Page:
 	- view all categories, set number of hours for each
+
+Migration:
+	- backup old db, move to stale branch
+	- copy IDs
+	- add in summer hours
 
 Categories
 	- Build Summer training

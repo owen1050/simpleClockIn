@@ -94,7 +94,7 @@ def checkOutAllUsersNow():
 @app.route('/api/getUserTimes')
 def getUserTimes():
 	id = int(request.args.get('id', default = -1))
-	ret = db.getUsersTimes(id)
+	ret = db.getOneUsersTimes(id)
 	print("getUserTimes:", ret)
 	return str(ret)
 

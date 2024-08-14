@@ -1,3 +1,6 @@
+Before updating:
+	- backup db in main branch
+
 Main Page:
 	- look pretty
 	- on load cache all ids and user names

@@ -209,12 +209,14 @@ function signInTextChanged() {
     if(isUserCheckedIn(id)){
       document.getElementById("idAction").style.display = ''
       document.getElementById("categoryList").style.display = ''
-      document.getElementById("hoursButtonID").style.display = ''
+      
     }else{
       document.getElementById("idAction").style.display = 'none'
       document.getElementById("categoryList").style.display = 'none'
+
     }
     document.getElementById("buttonID").style.display = ''
+    document.getElementById("hoursButtonID").style.display = ''
     
     } else {
       hideButtons();

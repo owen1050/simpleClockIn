@@ -16,5 +16,9 @@ Admin Page:
 		- manuall add sign in time
 		- save button
 
+All Pages:
+	- look pretty
+
+
 Categories
 	- Build at home work (25% HOURS?)

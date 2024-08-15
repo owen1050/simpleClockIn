@@ -3,9 +3,20 @@
 	<head>
 		<title>8513 Sign In</title>
 	<style>
-           *{
-               text-align: center;
-           }	
+			body {background-color: #de82ff;}
+	     *{
+	         text-align: center;
+	         color: #ffffff;
+	     }	
+       div.a {
+						word-wrap: break-word;
+					}
+				button{
+					background-color: #5e995b;
+				}
+				input{
+					color: #5e995b;
+				}
        </style>
 	</head>
 <body onload="updateUsersList()">
@@ -26,8 +37,10 @@
 <button type="button" id="hoursButtonID" onclick="gotoHours()" style="display:none;">Go To Hours</button>
 <br><br>
 
+	<div class="a">
+ <h4 id="listText">Users checked in: </h4>
+</div>
 
-<h4 id="listText">Users checked in:</h4>
 
 <br>
 <button type="button" id="newID" onclick="gotoNew()">No ID? Create new user here</button>

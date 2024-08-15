@@ -1,26 +1,8 @@
-Before updating:
-	- backup db in main branch
-
 Main Page:
-	- look pretty
-	- on load cache all ids and user names
-	- type in code
 	- on sucessful code, display name, 
-		if signed out
-			sign in button, hours page button
-		if signed in
-			dropdown of categories
-				after category selected, put cursor in action box.
-					in action box
-						if enter pressed submit user, keep category same, cursor in ID box
-						
-Hours page:
-	- look pretty
-	- dropdown build or business
-	- their status
-	- table of each category, number of required hours.
-	- table of sign ins for that category
-	- list of all sign ins
+
+Hours Page
+	- invert order of sign ins
 
 Admin Page:
 	- Total build hours
@@ -35,9 +17,4 @@ Admin Page:
 		- save button
 
 Categories
-	- Build Summer training
-	- Business meeting
-	- Business work at home
-	- Build work session
-	- Competition
-	- Start of year meeting
+	- Build at home work (25% HOURS?)

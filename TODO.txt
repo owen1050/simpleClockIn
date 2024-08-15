@@ -18,7 +18,7 @@ Admin Page:
 
 All Pages:
 	- look pretty
-
+	- going back or back button on hours page
 
 Categories
 	- Build at home work (25% HOURS?)

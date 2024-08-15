@@ -112,6 +112,15 @@ for(let i = 0; i < busStatus.length; i++){
         lowestStatus = busStatus[i]
     }
 }
+allNA = true
+for(let i = 0; i < busStatus.length; i++){
+    if(busStatus[i] != "n/a"){
+        allNA = false
+    }
+}
+if(allNA){
+    lowestStatus = "n/a"
+}
 
 lowestBuildStatus = "V"
 for(let i = 0; i < buildStatus.length; i++){
@@ -124,6 +133,15 @@ for(let i = 0; i < buildStatus.length; i++){
     if(lowestBuildStatus == "P" && (buildStatus[i] == "None")){
         lowestBuildStatus = buildStatus[i]
     }
+}
+allNA = true
+for(let i = 0; i < buildStatus.length; i++){
+    if(buildStatus[i] != "n/a"){
+        allNA = false
+    }
+}
+if(allNA){
+    lowestBuildStatus = "n/a"
 }
 
 statusText.innerHTML = "Total Hours: " + totalHours + ". Build Varsity Status: " + lowestBuildStatus + ". Business Varsity Status: " + lowestStatus + ".    "

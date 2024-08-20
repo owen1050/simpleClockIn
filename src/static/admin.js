@@ -1,4 +1,4 @@
-url = "http://villawalsh.happyrobotics.com:3600"
+url = "http://villawalsh.happyrobotics.com"
 //url = "http://localhost:5000"
 
 var categories = getAllCategories()

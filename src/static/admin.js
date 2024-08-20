@@ -13,10 +13,6 @@ for(let row = 0; row < categories.length; row++){
     newRow.insertCell(2).innerHTML = categories[row][0]
 }
 
-function gotoHome(){
-  window.location.replace(url);
-}
-
 function checkOutAllUsers(){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/checkOutAllUsersNow" , false);
@@ -38,7 +34,7 @@ function downloadUserData(){
 }
 
 function goHome(){
-  window.location.replace(url);
+  window.location.href = url;
 }
 
 function getAllCategories(){

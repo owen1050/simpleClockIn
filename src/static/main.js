@@ -1,7 +1,6 @@
 url = "http://villawalsh.happyrobotics.com"
 //url = "http://localhost:5000"
 
-
 // Execute a function when the user presses a key on the keyboard
 var input = document.getElementById("id");
 input.addEventListener("keypress", function(event) {
@@ -41,15 +40,15 @@ for (var i = 0; i<gCategories.length; i++){
 function gotoHours(){
   textboxElement = document.getElementById("id");
   id = textboxElement.value;
-  window.location.replace(url+"/hours?id=" + id);
+  window.location.href = url+"/hours?id=" + id;
 }
 
 function gotoNew(){
-  window.location.replace(url+"/newUser");
+  window.location.href = url+"/newUser";
 }
 
 function gotoAdmin(){
-  window.location.replace(url+"/admin");
+  window.location.href = url+"/admin";
 }
 
 function signInOut() {

@@ -14,6 +14,10 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 def main():
 	return app.send_static_file('main.html')
 
+@app.route('/calendar')
+def calendarPage():
+	return app.send_static_file('calendar.html')
+
 @app.route('/newUser')
 def newUser():
 	return app.send_static_file('newUserPage.html')

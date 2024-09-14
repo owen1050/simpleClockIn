@@ -13,6 +13,18 @@ for(let row = 0; row < categories.length; row++){
     newRow.insertCell(2).innerHTML = categories[row][0]
 }
 
+var users = getAllUsers()
+var table = document.getElementById("userTable")
+cols = table.rows[0].cells.length
+
+for(let row = 0; row < users.length; row++){
+    newRow = table.insertRow(table.rows.length);
+    
+    newRow.insertCell(0).innerHTML = users[row][0]
+    newRow.insertCell(1).innerHTML = users[row][1]
+    
+}
+
 function checkOutAllUsers(){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/checkOutAllUsersNow" , false);
@@ -66,6 +78,15 @@ function updateHours(id, hours){
     console.log(id, hours)
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/setHoursForCategory?id=" + id + "&hours=" + hours, false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+}
+
+function getAllUsers(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getAllUsers", false);
     xhr.send();
     const data = JSON.parse(xhr.response);
     console.log(data);

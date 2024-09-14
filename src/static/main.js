@@ -113,6 +113,15 @@ function doesUserExistLocal(id){
   return 0
 }
 
+function getUsersLocalName(id){
+  for(let i = 0; i < gUsers.length; i++){
+    if(gUsers[i][0] == id){
+      return gUsers[i][1];
+    }
+  }
+  return "Unknown"
+}
+
 function isUserCheckedIn(id){
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/isUserCheckedIn?id=" + id, false);
@@ -205,6 +214,8 @@ function signInTextChanged() {
     hideButtons();
   }
   if(doesUserExistLocal(id)){
+    
+    document.getElementById("usernameText").innerText = "User: " + getUsersLocalName(id)
     if(isUserCheckedIn(id)){
       document.getElementById("idAction").style.display = ''
       document.getElementById("categoryList").style.display = ''
@@ -218,6 +229,7 @@ function signInTextChanged() {
     document.getElementById("hoursButtonID").style.display = ''
     
     } else {
+      document.getElementById("usernameText").innerText = "User: Unknown"
       hideButtons();
     }
   }

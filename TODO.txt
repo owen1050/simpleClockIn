@@ -1,25 +1,19 @@
-Main Page:
-	- on sucessful code, display name, 
-
 Hours Page
 	- invert order of sign ins
 
 Admin Page:
-	- Total build hours
-	- Total TD  hours
-	- table of all categories, and their weights, and how many hours you need in that category for P, JV, V
-		- editable, and can add new row
-		- save button
+	
+	- editable, and can add new category
+	
 	- dropdown of all users
 		- when one selected, table of all hours (date, category, length, text)
 		- edit length of sign in via textbox
 		- manuall add sign in time
 		- save button
-		- list of all users
 
 All Pages:
 	- look pretty
-	- going back or back button on hours page
+	- move common methods and vars to main js
 
 Categories
 	- Build at home work (25% HOURS?)

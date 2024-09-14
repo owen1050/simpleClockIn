@@ -14,6 +14,7 @@ for(let row = 0; row < categories.length; row++){
 }
 
 var users = getAllUsers()
+var hours = getAllUsersHours()
 var table = document.getElementById("userTable")
 cols = table.rows[0].cells.length
 
@@ -22,6 +23,7 @@ for(let row = 0; row < users.length; row++){
     
     newRow.insertCell(0).innerHTML = users[row][0]
     newRow.insertCell(1).innerHTML = users[row][1]
+    newRow.insertCell(2).innerHTML = hours.get(users[row][0])
     
 }
 
@@ -91,4 +93,19 @@ function getAllUsers(){
     const data = JSON.parse(xhr.response);
     console.log(data);
     return data
+}
+
+function getAllUsersHours(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getAllUsersHours", false);
+    xhr.send();
+    strResp = xhr.response.replace(/\s/g, "");
+    arr = strResp.split(",")
+    retArr = new Map();
+    for(let i = 0; i < arr.length; i++){
+        thisEle = arr[i].split(":")
+        retArr.set(Number(thisEle[0]), (thisEle[1]/3600).toFixed(2))
+    }
+    console.log(retArr);
+    return retArr
 }

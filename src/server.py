@@ -117,6 +117,13 @@ def getAllUsersTimes():
 	print("got getAllUsersTimes", ret)
 	return send_file("data.xls", download_name='data.xls')
 
+@app.route('/api/getAllUsersHours')
+def getAllUsersHours():
+	ret = db.getAllUsersHours()
+	retStr = str(ret)[1:-1]
+	print("got getAllUsersHours", retStr)
+	return str(retStr)
+
 @app.route('/api/getAllUsers')
 def getListOfUsers():
 	ret = json.dumps(db.getListOfUsers())
@@ -128,14 +135,6 @@ def getAllCategories():
 	ret = json.dumps(db.getAllCategories())
 	print("getAllCategories:", ret)
 	return str(ret)
-
-
-
-@app.route('/owen/flashLights')
-def flashLights():
-	thread = Thread(target = flashLightsFunc)
-	thread.start()
-	return str("done")
 
 def flashLightsFunc():
 	for i in range(4):

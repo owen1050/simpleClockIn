@@ -38,15 +38,15 @@ for(let row = 0; row < categories.length; row++){
             newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)];
         }
         if(col == 3){
-            newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)];
+            newRow.insertCell(col).innerHTML = (categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)]).toFixed(2);
             var buildVar = Number(categories[row][catToColMap.get(col)])* categories[row][catToColMap.get(2)];
         }
         if(col == 4){
-            newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)];
+            newRow.insertCell(col).innerHTML = (categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)]).toFixed(2);
             var buildJV = Number(categories[row][catToColMap.get(col)])* categories[row][catToColMap.get(2)];
         }
         if(col == 5){
-            newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)];
+            newRow.insertCell(col).innerHTML = (categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)]).toFixed(2);
             var buildP = Number(categories[row][catToColMap.get(col)])* categories[row][catToColMap.get(2)];
         }
         if(col == 6){
@@ -68,15 +68,15 @@ for(let row = 0; row < categories.length; row++){
         }
         if(col == 7){
             var busVar = Number(categories[row][catToColMap.get(col)]) * categories[row][catToColMap.get(2)]
-            newRow.insertCell(col).innerHTML = busVar;
+            newRow.insertCell(col).innerHTML = busVar.toFixed(2);
             
         }
         if(col == 8){
-            newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)];
+            newRow.insertCell(col).innerHTML = (categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)]).toFixed(2);
             var busJV = Number(categories[row][catToColMap.get(col)]) * categories[row][catToColMap.get(2)]
         }
         if(col == 9){
-            newRow.insertCell(col).innerHTML = categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)];
+            newRow.insertCell(col).innerHTML = (categories[row][catToColMap.get(col)] * categories[row][catToColMap.get(2)]).toFixed(2);
             var busP = Number(categories[row][catToColMap.get(col)]) * categories[row][catToColMap.get(2)]
         }
         if(col == 10){

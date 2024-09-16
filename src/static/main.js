@@ -35,6 +35,7 @@ for (var i = 0; i<gCategories.length; i++){
     select.appendChild(opt);
 }
 
+var temp =self.setInterval(updateUsersList, 60000);
 
 
 function gotoHours(){

@@ -48,14 +48,14 @@ function gotoNew(){
 }
 
 function gotoAdmin(){
-  window.location.href = url+"/admin";
+  window.location.href = url+"/supersecretpassword";
 }
 
 function signInOut() {
     textboxElement = document.getElementById("id");
     id = textboxElement.value;
     
-    if(id == 'admin'){
+    if(id == 'VillaShines1234!'){
       gotoAdmin()
     }else{
       actionElement = document.getElementById("idAction")

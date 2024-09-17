@@ -1,5 +1,5 @@
-url = "http://villawalsh.happyrobotics.com"
-//url = "http://localhost:5000"
+url = url_g
+
 
 var categories = getAllCategories()
 var table = document.getElementById("category")

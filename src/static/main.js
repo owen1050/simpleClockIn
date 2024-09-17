@@ -1,5 +1,4 @@
-url = "http://villawalsh.happyrobotics.com"
-//url = "http://localhost:5000"
+url = url_g
 
 // Execute a function when the user presses a key on the keyboard
 var input = document.getElementById("id");

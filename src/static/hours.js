@@ -1,5 +1,5 @@
-url = "http://villawalsh.happyrobotics.com"
-//url = "http://localhost:5000"
+url = url_g
+
 
 var id = new URLSearchParams(window.location.search).get('id')
 var signIns = getUserTimes(id)

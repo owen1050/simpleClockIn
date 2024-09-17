@@ -22,7 +22,7 @@ def calendarPage():
 def newUser():
 	return app.send_static_file('newUserPage.html')
 
-@app.route('/admin')
+@app.route('/supersecretpassword')
 def adminPage():
 	return app.send_static_file('admin.html')
 

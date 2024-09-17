@@ -1,5 +1,6 @@
+screen -XS SignIn kill
 git add -A
 git commit -m "update db"
 git pull
-screen -XS SignIn kill
+git push
 screen -dmS SignIn python3 server.py

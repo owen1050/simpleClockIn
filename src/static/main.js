@@ -240,3 +240,8 @@ function signInTextChanged() {
     document.getElementById("buttonID").style.display = 'none'
     document.getElementById("hoursButtonID").style.display = 'none'
   }
+
+
+  function goToCal(){
+    window.location.href = url+"/calendar";
+  }

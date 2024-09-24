@@ -144,7 +144,7 @@ if(allNA){
     lowestBuildStatus = "n/a"
 }
 
-statusText.innerHTML = "Total Hours: " + totalHours + ". Build Varsity Status: " + lowestBuildStatus + ". Business Varsity Status: " + lowestStatus + ".    "
+statusText.innerHTML = "Total Hours: " + totalHours.toFixed(2) + ". Build Varsity Status: " + lowestBuildStatus + ". Business Varsity Status: " + lowestStatus + ".    "
 
 var eventTable = document.getElementById("hoursTableID")
 cols = eventTable.rows[0].cells.length

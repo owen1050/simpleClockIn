@@ -201,7 +201,7 @@ class databaseQuerys:
 				if(int(signInOut) == 0):
 					signInTime = datetime.fromisoformat(userEvents[index-1][1])
 					timeSpentCheckedIn = datetimeOfTime - signInTime
-					thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn.total_seconds(), category, action))
+					thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn.total_seconds(), category, str(action)))
 					#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
 				
 			return thisUsersList

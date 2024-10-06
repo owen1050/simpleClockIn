@@ -192,9 +192,9 @@ function getUserTimes(idi){
         } else {
             catId = tmp[4]
         }
-        cleanEvents.push([year, month, day, seconds, catId, tmp[5]])
+        act = tmp[5].substring(tmp[5].indexOf("'")+1, tmp[5].indexOf("'", 1))
+        cleanEvents.push([year, month, day, seconds, catId, act])
     }
-    console.log(cleanEvents)
     return cleanEvents
 }
 

@@ -343,3 +343,25 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in checkUserOut", e)
 			return -1
+
+	def updateCategoryValues(self, id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight):
+		cur = self.con.cursor()
+		try:
+			s = f"UPDATE categories SET hours='{hours}',"\
+				f"buildVarsityPer='{bV}', "\
+				f"buildJVPer='{bJV}', "\
+				f"buildParPer='{bP}', "\
+				f"busVarsityPer='{busV}', "\
+				f"busJVPer='{busJV}', "\
+				f"busParPer='{busPar}', "\
+				f"name='{name}', "\
+				f"weight='{weight}'"\
+				f"WHERE id = '{id}'"
+				
+			res = cur.execute(s)
+			ret = res.fetchone()
+			self.con.commit()
+			return 0
+		except Exception as e:
+			print("error in setHoursForCategory", e)
+			return -1

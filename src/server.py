@@ -149,5 +149,27 @@ def manuallyAddEvent():
 	print("manuallyAddEvent:", ret, id, text, daysAgo, hours, cat)
 	return str(ret)
 
+@app.route('/api/updateCategoryValues')
+def updateCategoryValues():
+	id = int(request.args.get('id', default = -1))
+	hours = float(request.args.get('hours', default = -1))
+
+	bV = float(request.args.get('bV', default = -1))
+	bJV = float(request.args.get('bJV', default = -1))
+	bP = float(request.args.get('bP', default = -1))
+
+	busV = float(request.args.get('busV', default = -1))
+	busJV = float(request.args.get('busJV', default = -1))
+	busPar = float(request.args.get('busPar', default = -1))
+
+	weight = float(request.args.get('weight', default = -1))
+
+	name = request.args.get('name', default = 'no name given')
+
+	ret = db.updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight)
+
+	print("updateCategoryValues:", ret, id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight)
+	return str(ret)
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

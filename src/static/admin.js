@@ -135,3 +135,23 @@ function manuallyAddHours(id, cat, daysAgo, hours, text){
     return data
 
 }
+
+function updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/updateCategoryValues?id=" + id 
+        + "&hours=" + hours
+        + "&bV=" + bV
+        + "&bJV=" + bJV
+        + "&bP=" + bP
+        + "&busV=" + busV
+        + "&busJV=" + busJV
+        + "&busPar=" + busPar
+        + "&name=" + name
+        + "&weight=" + weight
+        , false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+
+}

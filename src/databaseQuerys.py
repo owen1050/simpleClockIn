@@ -310,3 +310,36 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in setHoursForCategory", e)
 			return -1
+
+	def addSignInEvent(self, id, action,  daysAgo, hours, categoryId = -1,):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
+			ret = res.fetchone()
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now() - timedelta(days = int(daysAgo), hours = float(hours))}', '{action}', {int(categoryId)}, {1})"
+			res = cur.execute(s)
+
+			self.con.commit()
+
+			self.checkUserOutMinusTime(id, action, daysAgo, hours, categoryId)
+
+			return 0
+		except Exception as e:
+			print("error in checkUserIn", e)
+			return -1
+		
+
+	def checkUserOutMinusTime(self, id, action, daysAgo, hours, categoryId = -1,):
+		cur = self.con.cursor()
+		try:
+			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
+			ret = res.fetchone()
+
+			s = f"INSERT INTO events VALUES ({id},'{datetime.now() - timedelta(days = int(daysAgo))}', '{action}', {int(categoryId)}, {0})"
+			res = cur.execute(s)
+
+			self.con.commit()
+			return 0
+		except Exception as e:
+			print("error in checkUserOut", e)
+			return -1

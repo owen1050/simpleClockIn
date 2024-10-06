@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>8513 Sign In</title>
-		<link rel="stylesheet" type="text/css" href="style.css">	
-	</head>
-<body>
-<style>
-  button {
-  background-color: #5e995b;
-
-  font-size: 20px;
-}
-input {
-  font-size: 20px;
-  color: #5e995b;
-}
-</style>
-
-<h1>8513 Admin Page</h1>
-<br>
-
-<table id="category">
-  <tr>
-    <th>Category</th>
-    <th>Hours</th>
-    <th>ID</th>
-  </tr>
-</table>
-<button type="button" id="updateHoursBUtton" onclick="updateAllHours()">Update All Hours</button>
-
-<br>
-<br>
-<table id="userTable">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Hours</th>
-  </tr>
-</table>
-
-<br>
-<br>
-<h3 id="checkinText">Click button to perform action</h3>
-
-<button type="button" id="checkoutButton" onclick="checkOutAllUsers()">Sign Everyone Out Now</button>
-<br>
-<button type="button" id="downloadButton" onclick="downloadUserData()">Download User Data</button>
-<br>
-<br>
-
-<button type="button" id="homeButton" onclick="goHome()">Home</button>
-<br>
-<script src="url.js"></script>
-<script src="admin.js"></script>
-</body>
+   <head>
+      <title>8513 Sign In</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+   </head>
+   <body>
+      <style>
+         button {
+         background-color: #5e995b;
+         font-size: 20px;
+         }
+         input {
+         font-size: 20px;
+         color: #5e995b;
+         }
+      </style>
+      <h1>8513 Admin Page</h1>
+      <br>
+      <table id="category">
+         <tr>
+            <th>Category</th>
+            <th>Hours</th>
+            <th>ID</th>
+         </tr>
+      </table>
+      <button type="button" id="updateHoursBUtton" onclick="updateAllHours()">Update All Hours</button>
+      <br>
+      <br>
+      <table id="userTable">
+         <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Hours</th>
+         </tr>
+      </table>
+      <br>
+      <br>
+      <h3>Manually add sign in event:</h3>
+      <input type="text" id="manuallID" placeholder="id">
+      <input type="text" id="manuallCat" placeholder="category ID">
+      <input type="text" id="manuallDA" placeholder="How many days ago">
+      <input type="text" id="manuallHours" placeholder="Hours">
+      <input type="text" id="manuallText" placeholder="Action?">
+      <button type="button" id="manuallyAddButton" onclick="manuallyAddHoursButton()">Add Event</button>
+      <br>
+      <br>
+      <h3 id="checkinText">Click button to perform action</h3>
+      <button type="button" id="checkoutButton" onclick="checkOutAllUsers()">Sign Everyone Out Now</button>
+      <br>
+      <button type="button" id="downloadButton" onclick="downloadUserData()">Download User Data</button>
+      <br>
+      <br>
+      <button type="button" id="homeButton" onclick="goHome()">Home</button>
+      <br>
+      <script src="url.js"></script>
+      <script src="admin.js"></script>
+   </body>
 </html>

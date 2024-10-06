@@ -10,6 +10,6 @@ import json, time, requests
 
 db = databaseQuerys()
 
-ret = db.getOneUsersTimes(1)
+ret = db.checkOutAllUsersNow()
 
 print(ret)

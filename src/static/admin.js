@@ -109,3 +109,29 @@ function getAllUsersHours(){
     console.log(retArr);
     return retArr
 }
+
+function manuallyAddHoursButton() {
+    var idInBox = document.getElementById("manuallID")
+    var catInBox = document.getElementById("manuallCat")
+    var DAInBox = document.getElementById("manuallDA")
+    var hoursInBox = document.getElementById("manuallHours")
+    var textInBox = document.getElementById("manuallText")
+
+    manuallyAddHours(idInBox.value, catInBox.value, DAInBox.value, hoursInBox.value, textInBox.value)
+    
+}
+
+function manuallyAddHours(id, cat, daysAgo, hours, text){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/manuallyAddEvent?id=" + id 
+        + "&hours=" + hours 
+        + "&cat=" + cat
+        + "&daysAgo=" + daysAgo
+        + "&text=" + text
+        , false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+
+}

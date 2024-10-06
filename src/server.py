@@ -136,14 +136,18 @@ def getAllCategories():
 	print("getAllCategories:", ret)
 	return str(ret)
 
-def flashLightsFunc():
-	for i in range(4):
-		#on lightson https://maker.ifttt.com/trigger/lightson/json/with/key/Bf91G_MsjKUzsWqRs5N7n
-		requests.get('https://maker.ifttt.com/trigger/lightson/json/with/key/Bf91G_MsjKUzsWqRs5N7n')
-		time.sleep(1)
-		#off https://maker.ifttt.com/trigger/Lightsoff/with/key/Bf91G_MsjKUzsWqRs5N7n
-		requests.get('https://maker.ifttt.com/trigger/Lightsoff/with/key/Bf91G_MsjKUzsWqRs5N7n')
-		time.sleep(1)
+@app.route('/api/manuallyAddEvent')
+def manuallyAddEvent():
+	id = int(request.args.get('id', default = -1))
+	text = request.args.get('text', default = -1)
+	cat = int(request.args.get('cat', default = -1))
+	daysAgo = int(request.args.get('daysAgo', default = -1))
+	hours = float(request.args.get('hours', default = -1))
+
+	ret = db.addSignInEvent(id, text, daysAgo, hours, cat)
+
+	print("manuallyAddEvent:", ret, id, text, daysAgo, hours, cat)
+	return str(ret)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

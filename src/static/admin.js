@@ -155,3 +155,47 @@ function updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name,
     return data
 
 }
+
+function updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/updateCategoryValues?id=" + id 
+        + "&hours=" + hours
+        + "&bV=" + bV
+        + "&bJV=" + bJV
+        + "&bP=" + bP
+        + "&busV=" + busV
+        + "&busJV=" + busJV
+        + "&busPar=" + busPar
+        + "&name=" + name
+        + "&weight=" + weight
+        , false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
+
+}
+
+function updateCategoryButton() {
+    var newID = document.getElementById("newID")
+    var newName = document.getElementById("newName")
+    var newHours = document.getElementById("newHours")
+    var newBV = document.getElementById("newBV")
+    var newBJV = document.getElementById("newBJV")
+    var newBP = document.getElementById("newBP")
+    var newBusV = document.getElementById("newBusV")
+    var newBusJV = document.getElementById("newBusJV")
+    var newBPar = document.getElementById("newBPar")
+    var newWeight = document.getElementById("newWeight")
+
+    updateCategoryValues(newID.value,
+        newHours.value,
+        newBV.value,
+        newBJV.value,
+        newBP.value,
+        newBusV.value,
+        newBusJV.value,
+        newBPar.value,
+        newName.value,
+        newWeight.value)
+}

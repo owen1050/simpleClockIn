@@ -3,17 +3,9 @@ Hours Page
 
 Admin Page:
 	
-	- editable, and can add new category
-		- edit db is done need front end
-		- then add new category from page - probably same ui just if no ID matches
-	
 	- dropdown of all users
 		- when one selected, table of all hours (date, category, length, text)
 		- edit length of sign in
 
 All Pages:
-	- look pretty
-	- move common methods and vars to main js
-
-Categories
-	- Build at home work (25% HOURS?)
+	- move common methods main js

@@ -13,6 +13,7 @@
          input {
          font-size: 20px;
          color: #5e995b;
+         width: 150px;
          }
       </style>
       <h1>8513 Admin Page</h1>
@@ -24,7 +25,24 @@
             <th>ID</th>
          </tr>
       </table>
-      <button type="button" id="updateHoursBUtton" onclick="updateAllHours()">Update All Hours</button>
+      <br>
+      <button type="button" id="updateHoursButton" onclick="updateAllHours()">Update All Hours</button>
+
+      <br>
+      <h3>Add or edit category:</h3>
+      <input type="text" id="newID" placeholder="ID Number">
+      <input type="text" id="newName" placeholder="Category Name">
+      <input type="text" id="newHours" placeholder="Total hours">
+      <input type="text" id="newBV" placeholder="Build Varsity Percentage">
+      <input type="text" id="newBJV" placeholder="Build JV Percentage">
+      <input type="text" id="newBP" placeholder="Build Participant Percentage">
+      <input type="text" id="newBusV" placeholder="Business Varsity Percentage">
+      <input type="text" id="newBusJV" placeholder="Business JV Percentage">
+      <input type="text" id="newBPar" placeholder="Business Participant Percentage">
+      <input type="text" id="newWeight" placeholder="Weight Percentage">
+      <button type="button" id="updateCategoryButton" onclick="updateCategoryButton()">Add Event</button>
+      <br>
+      <br>
       <br>
       <br>
       <table id="userTable">

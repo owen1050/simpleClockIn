@@ -345,23 +345,56 @@ class databaseQuerys:
 			return -1
 
 	def updateCategoryValues(self, id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight):
+		if(self.doesCategoryIDExist(id)):
+			cur = self.con.cursor()
+			try:
+				s = f"UPDATE categories SET hours='{hours}',"\
+					f"buildVarsityPer='{bV}', "\
+					f"buildJVPer='{bJV}', "\
+					f"buildParPer='{bP}', "\
+					f"busVarsityPer='{busV}', "\
+					f"busJVPer='{busJV}', "\
+					f"busParPer='{busPar}', "\
+					f"name='{name}', "\
+					f"weight='{weight}'"\
+					f"WHERE id = '{id}'"
+					
+				res = cur.execute(s)
+				ret = res.fetchone()
+				self.con.commit()
+				return 0
+			except Exception as e:
+				print("error in setHoursForCategory", e)
+				return -1
+		else:
+			cur = self.con.cursor()
+			try:
+				s = f"INSERT INTO categories VALUES ('{id}','{hours}',"\
+					f"'{bV}', "\
+					f"'{bJV}', "\
+					f"'{bP}', "\
+					f"'{busV}', "\
+					f"'{busJV}', "\
+					f"'{busPar}', "\
+					f"'{name}', "\
+					f"'{weight}')"
+					
+				res = cur.execute(s)
+				ret = res.fetchone()
+				self.con.commit()
+				return 0
+			except Exception as e:
+				print("error in setHoursForCategory", e)
+				return -1
+
+	def doesCategoryIDExist(self, id):
 		cur = self.con.cursor()
 		try:
-			s = f"UPDATE categories SET hours='{hours}',"\
-				f"buildVarsityPer='{bV}', "\
-				f"buildJVPer='{bJV}', "\
-				f"buildParPer='{bP}', "\
-				f"busVarsityPer='{busV}', "\
-				f"busJVPer='{busJV}', "\
-				f"busParPer='{busPar}', "\
-				f"name='{name}', "\
-				f"weight='{weight}'"\
-				f"WHERE id = '{id}'"
-				
-			res = cur.execute(s)
+			res = cur.execute("SELECT * FROM categories where id = " + str(id))
 			ret = res.fetchone()
-			self.con.commit()
-			return 0
+			if(ret == None):
+				return 0
+			return 1
 		except Exception as e:
-			print("error in setHoursForCategory", e)
+			print("error in doesCategoryIDExist", e)
 			return -1

@@ -31,8 +31,8 @@ for(let row = 0; row < users.length; row++){
       status = getVarsityStatus(users[row][0])
     } catch (e) {}
     console.log(status)
-    newRow.insertCell(3).innerHTML = status[1]
-    newRow.insertCell(4).innerHTML = status[0]
+    newRow.insertCell(3).innerHTML = status[0]
+    newRow.insertCell(4).innerHTML = status[1]
     
 }
 

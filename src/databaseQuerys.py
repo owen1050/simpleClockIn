@@ -225,7 +225,7 @@ class databaseQuerys:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.fromisoformat(str(time)) + timedelta(minutes=1)}', 'forced check out', {0})"
+			s = f"INSERT INTO events VALUES ({id},'{datetime.fromisoformat(str(time)) + timedelta(minutes=1)}', 'forced check out', {0}, {0})"
 			res = cur.execute(s)
 			self.con.commit()
 

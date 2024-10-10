@@ -6,6 +6,8 @@ Admin Page:
 	- dropdown of all users
 		- when one selected, table of all hours (date, category, length, text)
 		- edit length of sign in
+	- link to each page
+	- show varsity status on admin page
 
 All Pages:
 	- move common methods main js

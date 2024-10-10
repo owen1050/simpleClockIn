@@ -21,7 +21,8 @@ cols = table.rows[0].cells.length
 for(let row = 0; row < users.length; row++){
     newRow = table.insertRow(table.rows.length);
     
-    newRow.insertCell(0).innerHTML = users[row][0]
+    cellN = newRow.insertCell(0)
+    cellN.innerHTML = "<a href=\"" + url + "/hours?id=" + users[row][0].toString() + "\">"+users[row][0].toString()+"</a>"
     newRow.insertCell(1).innerHTML = users[row][1]
     newRow.insertCell(2).innerHTML = hours.get(users[row][0])
     

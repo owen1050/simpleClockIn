@@ -195,16 +195,18 @@ function updateUsersList() {
   listStr = ""
   users = getAllUsers();
   gUsers = users;
+  numUsers = 0;
   for(let i = 0; i < users.length; i++){
     
     if(users[i][2] == 1){
       listStr = listStr + users[i][1] + ", "
+      numUsers = numUsers + 1
     }
   }
   if(listStr.slice(-1) == ' '){
     listStr = listStr.substring(0, listStr.length - 2) + "."
   }
-  listTextElement.innerText = "Users checked in:\n" + listStr
+  listTextElement.innerText = "Users checked in("+ numUsers.toString() +"):\n" + listStr
 }
 
 function signInTextChanged() {

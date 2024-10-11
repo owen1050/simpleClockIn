@@ -5,6 +5,7 @@ body {
 * {
 	text-align: center;
 	color: #000000;
+	
 }
 
 div.a {
@@ -40,7 +41,16 @@ h1 {
 
 h2 {
 	font-size: 60px;
+
+	text-decoration: None;
 }
+
+h3 {
+	font-size: 50px;
+
+	text-decoration: None;
+}
+
 
 h4 {
 	font-size: 40px;
@@ -62,3 +72,4 @@ table {
 			text-align: center;
 		  background-color: #dddddd;
 		}
+}

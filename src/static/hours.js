@@ -23,6 +23,13 @@ var statusText = document.getElementById("statusText")
 var busStatus = []
 var buildStatus = []
 
+let users = getAllUsers();
+let gUsers = users;
+
+var nameText = document.getElementById("nameTextID")
+nameText.innerHTML = "Welcome " + getUsersLocalName(id)
+
+
 for(let row = 0; row < categories.length; row++){
     newRow = catTable.insertRow(catTable.rows.length);
     for(let col = 0; col < 11; col++){
@@ -213,4 +220,22 @@ function getCategoryNameFromID(id){
             return categories[i][8]
         }
     }
+}
+
+function getUsersLocalName(id){
+  for(let i = 0; i < gUsers.length; i++){
+    if(gUsers[i][0] == id){
+      return gUsers[i][1];
+    }
+  }
+  return "Unknown"
+}
+
+function getAllUsers(){
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", url + "/api/getAllUsers", false);
+    xhr.send();
+    const data = JSON.parse(xhr.response);
+    console.log(data);
+    return data
 }

@@ -1,6 +1,6 @@
 Hours Page
 	- invert order of sign ins
-	- name at top
+	- figure out how SWE/FLL fit into other categories
 
 
 All Pages:

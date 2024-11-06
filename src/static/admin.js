@@ -23,14 +23,14 @@ for(let row = 0; row < users.length; row++){
     cellN = newRow.insertCell(0)
     cellN.innerHTML = "<a href=\"" + url + "/hours?id=" + users[row][0].toString() + "\">"+users[row][0].toString()+"</a>"
     newRow.insertCell(1).innerHTML = users[row][1]
-    newRow.insertCell(2).innerHTML = hours.get(users[row][0])
-    console.log(users[row][0])
+    newRow.insertCell(2).innerHTML = Number(hours.get(users[row][0])).toFixed(2)
+    
 
     let status = ['None', 'None'] 
     try {
       status = getVarsityStatus(users[row][0])
     } catch (e) {}
-    console.log(status)
+    
     newRow.insertCell(3).innerHTML = status[0]
     newRow.insertCell(4).innerHTML = status[1]
     
@@ -41,7 +41,6 @@ function checkOutAllUsers(){
     xhr.open("GET", url + "/api/checkOutAllUsersNow" , false);
     xhr.send();
     const data = xhr.response;
-    console.log(data);
     ret = parseInt(data);
 
     text = document.getElementById("checkinText")
@@ -65,7 +64,6 @@ function getAllCategories(){
     xhr.open("GET", url + "/api/getAllCategories", false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 }
 
@@ -86,12 +84,10 @@ function updateAllHours(){
 }
 
 function updateHours(id, hours){
-    console.log(id, hours)
     const xhr = new XMLHttpRequest();
     xhr.open("GET", url + "/api/setHoursForCategory?id=" + id + "&hours=" + hours, false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 }
 
@@ -100,7 +96,6 @@ function getAllUsers(){
     xhr.open("GET", url + "/api/getAllUsers", false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 }
 
@@ -113,9 +108,8 @@ function getAllUsersHours(){
     retArr = new Map();
     for(let i = 0; i < arr.length; i++){
         thisEle = arr[i].split(":")
-        retArr.set(Number(thisEle[0]), (thisEle[1]/3600).toFixed(2))
+        retArr.set(Number(thisEle[0]), (thisEle[1]))
     }
-    console.log(retArr);
     return retArr
 }
 
@@ -140,7 +134,6 @@ function manuallyAddHours(id, cat, daysAgo, hours, text){
         , false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 
 }
@@ -160,7 +153,6 @@ function updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name,
         , false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 
 }
@@ -180,7 +172,6 @@ function updateCategoryValues(id, hours, bV, bJV, bP, busV, busJV, busPar, name,
         , false);
     xhr.send();
     const data = JSON.parse(xhr.response);
-    console.log(data);
     return data
 
 }
@@ -191,8 +182,9 @@ function getUserTimes(idi){
     xhr.open("GET", url + "/api/getUserTimes?id=" + idi, false);
     xhr.send();
     const data = xhr.response;
-   
+    
     events = data.split("), (")
+
     cleanEvents = []
 
     for(let i = 0; i < events.length; i++){
@@ -207,6 +199,7 @@ function getUserTimes(idi){
             catId = tmp[4]
         }
         act = tmp[5].substring(tmp[5].indexOf("'")+1, tmp[5].indexOf("'", 1))
+
         cleanEvents.push([year, month, day, seconds, catId, act])
     }
     return cleanEvents

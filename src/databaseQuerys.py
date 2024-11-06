@@ -61,7 +61,7 @@ class databaseQuerys:
 			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {0})"
 			res = cur.execute(s)
 
-			s = f"INSERT INTO newEvents VALUES ({id},'{checkInTime}', '{(datetime.now() - checkInTime).total_seconds()/3600}', {categoryId})"
+			s = f"INSERT INTO newEvents VALUES ({id},'{checkInTime}', '{(datetime.now() - checkInTime).total_seconds()/3600}', {categoryId}, \"{action}\")"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -98,7 +98,7 @@ class databaseQuerys:
 	def getUsersTimes(self, id):
 		cur = self.con.cursor()
 		try:
-			res = cur.execute("SELECT * FROM events where userID = " + str(id))
+			res = cur.execute("SELECT * FROM newEvents where userID = " + str(id))
 			ret = res.fetchall()
 			return ret
 			
@@ -136,21 +136,12 @@ class databaseQuerys:
 			for user in users:
 				thisUsersList = []
 				userEvents = self.getUsersTimes(user[0])
-				for index in range(len(userEvents)):
-					event = userEvents[index]
-					#print(event)
-					id = event[0]
-					time = event[1]
-					category = event[3]
-					signInOut = event[4]
-					datetimeOfTime = datetime.fromisoformat(time)
-
-					if(int(signInOut) == 0):
-						signInTime = datetime.fromisoformat(userEvents[index-1][1])
-						timeSpentCheckedIn = datetimeOfTime - signInTime
-						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn, category))
-						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
-				ret[user[0]] = thisUsersList
+				#print(userEvents)
+				datetimeEvents = []
+				for event in range(len(userEvents)):
+					datetimeEvents.append((datetime.fromisoformat(userEvents[event][1]), timedelta(hours = float(userEvents[event][2])),  int(userEvents[event][3])))
+				
+				ret[user[0]] = datetimeEvents
 			return ret
 			
 		except Exception as e:
@@ -159,34 +150,17 @@ class databaseQuerys:
 
 	def getAllUsersHours(self):
 		cur = self.con.cursor()
-		try:
-			ret = {}
-			users = self.getListOfUsers()
-			for user in users:
-				totalSec = 0
-				thisUsersList = []
-				userEvents = self.getUsersTimes(user[0])
-				for index in range(len(userEvents)):
-					event = userEvents[index]
-					#print(event)
-					id = event[0]
-					time = event[1]
-					action = event[2]
-					signInOut = event[4]
-					datetimeOfTime = datetime.fromisoformat(time)
-
-					if(int(signInOut) == 0):
-						signInTime = datetime.fromisoformat(userEvents[index-1][1])
-						timeSpentCheckedIn = datetimeOfTime - signInTime
-						totalSec = totalSec + timeSpentCheckedIn.total_seconds()
-						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn))
-						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
-				ret[user[0]] = totalSec
-			return ret
-			
-		except Exception as e:
-			print("error in getListOfUsers", e)
-			return -1
+		
+		ret = {}
+		users = self.getListOfUsers()
+		for user in users:
+			totalSec = 0
+			userEvents = self.getUsersTimes(user[0])
+			for index in range(len(userEvents)):
+				event = userEvents[index]
+				totalSec = totalSec + event[2]
+			ret[user[0]] = totalSec
+		return ret	
 
 	def getOneUsersTimes(self, id):
 		cur = self.con.cursor()
@@ -197,17 +171,14 @@ class databaseQuerys:
 				event = userEvents[index]
 				#print(event)
 				id = event[0]
-				time = event[1]
-				action = event[2]
+				timeOfSignIn = event[1]
+				duration = event[2]
 				category = event[3]
-				signInOut = event[4]
-				datetimeOfTime = datetime.fromisoformat(time)
+				action = event[4]
+				datetimeOfTime = datetime.fromisoformat(timeOfSignIn)
 
-				if(int(signInOut) == 0):
-					signInTime = datetime.fromisoformat(userEvents[index-1][1])
-					timeSpentCheckedIn = datetimeOfTime - signInTime
-					thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn.total_seconds(), category, str(action)))
-					#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
+				thisUsersList.append((datetimeOfTime.date(), timedelta(hours = duration).total_seconds(), category, str(action)))
+				#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
 				
 			return thisUsersList
 			
@@ -218,20 +189,20 @@ class databaseQuerys:
 	def ifUserCheckedInCheckOutAtPlusMinute(self, id):
 		cur = self.con.cursor()
 		try:
-			res = cur.execute(f"SELECT MAX(time) from events where userID = {str(id)}")
-			time = res.fetchone()[0]
-
 			res = cur.execute("SELECT * FROM users where id = " + str(id))
 			ret = res.fetchone()
-
+			checkedInTime = datetime.fromisoformat(ret[3])
 			if(int(ret[2]) == 0):
 				return 0
 
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
 			ret = res.fetchone()
 
+			s = f"INSERT INTO newEvents VALUES ({id},'{checkedInTime}', '{(checkedInTime + timedelta(minutes = 1)).total_seconds()/3600}', {-1}, \"forcedSignOut\")"
+			res = cur.execute(s)
 
-			s = f"INSERT INTO events VALUES ({id},'{datetime.fromisoformat(str(time)) + timedelta(minutes=1)}', 'forced check out', {0}, {0})"
+
+			s = f"INSERT INTO events VALUES ({id},'{checkedInTime + timedelta(minutes=1)}', 'forced check out', {-1}, {-1})"
 			res = cur.execute(s)
 			self.con.commit()
 
@@ -259,17 +230,10 @@ class databaseQuerys:
 	def checkOutAllUsersNow(self):
 		cur = self.con.cursor()
 		try:
-			res = cur.execute("SELECT * FROM users")
+			res = cur.execute("SELECT * FROM users where checkedIn = 1")
 			ret = res.fetchall()
 			for r in ret:
-				id = r[0]
-				res2 = cur.execute("SELECT * FROM users where id = " + str(id))
-				ret2 = res2.fetchone()
-
-				if(int(ret2[2]) == 0):
-					pass
-				else:
-					self.checkUserOut(id, "forced sign out")
+				self.checkUserOut(id, "forced sign out")
 			return 0
 
 		except Exception as e:
@@ -322,32 +286,14 @@ class databaseQuerys:
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
 			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now() - timedelta(days = int(daysAgo), hours = float(hours))}', '{action}', {int(categoryId)}, {1})"
+			s = f"INSERT INTO newEvents VALUES ({id},'{datetime.now() - timedelta(days = int(daysAgo), hours = float(hours))}', {int(categoryId)}, '{action}')"
 			res = cur.execute(s)
 
 			self.con.commit()
 
-			self.checkUserOutMinusTime(id, action, daysAgo, hours, categoryId)
-
 			return 0
 		except Exception as e:
-			print("error in checkUserIn", e)
-			return -1
-		
-
-	def checkUserOutMinusTime(self, id, action, daysAgo, hours, categoryId = -1,):
-		cur = self.con.cursor()
-		try:
-			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
-			ret = res.fetchone()
-
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now() - timedelta(days = int(daysAgo))}', '{action}', {int(categoryId)}, {0})"
-			res = cur.execute(s)
-
-			self.con.commit()
-			return 0
-		except Exception as e:
-			print("error in checkUserOut", e)
+			print("error in addSignInEvent", e)
 			return -1
 
 	def updateCategoryValues(self, id, hours, bV, bJV, bP, busV, busJV, busPar, name, weight):
@@ -418,7 +364,7 @@ class databaseQuerys:
 				for time in range(len(thisUsersTimes)):
 					print(user, thisUsersTimes[time][0], thisUsersTimes[time][1].total_seconds()/3600, thisUsersTimes[time][2])
 
-					s = f"INSERT INTO newEvents VALUES ({user},'{thisUsersTimes[time][0]}', '{thisUsersTimes[time][1].total_seconds()/3600}', {thisUsersTimes[time][2]})"
+					s = f"INSERT INTO newEvents VALUES ({user},'{thisUsersTimes[time][0]}', '{thisUsersTimes[time][1].total_seconds()/3600}', {thisUsersTimes[time][2]}, \"new event\")"
 					res = cur.execute(s)
 
 			self.con.commit()

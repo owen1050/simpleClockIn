@@ -5,6 +5,7 @@ Hours Page
 Admin page:
 	- edit category of sign in
 
+
 All Pages:
 	- move common methods main js
 
@@ -13,3 +14,4 @@ DB
 	- update all the event reads to hit newEvents
 	- check website
 	- add "edit category"
+	- add back try catch

@@ -400,7 +400,7 @@ class databaseQuerys:
 			print("error in doesCategoryIDExist", e)
 			return -1
 
-	def runOnceToFillNewWvents(self):
+	def runOnceToFillNewEvents(self):
 
 		cur = self.con.cursor()
 		try:

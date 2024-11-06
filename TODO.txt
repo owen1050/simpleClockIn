@@ -3,7 +3,7 @@ Hours Page
 	- figure out how SWE/FLL fit into other categories
 
 Admin page:
-	- edit category of sign in
+	- edit category of sign in, edit length of sign in
 
 
 All Pages:
@@ -11,7 +11,5 @@ All Pages:
 
 DB
 	- update db creation to incude new events
-	- update all the event reads to hit newEvents
-	- check website
 	- add "edit category"
 	- add back try catch

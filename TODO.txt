@@ -5,3 +5,6 @@ Hours Page
 
 All Pages:
 	- move common methods main js
+
+DB
+	- update db creation to incude new events

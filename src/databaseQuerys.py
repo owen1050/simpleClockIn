@@ -136,14 +136,14 @@ class databaseQuerys:
 					#print(event)
 					id = event[0]
 					time = event[1]
-					action = event[2]
+					category = event[3]
 					signInOut = event[4]
 					datetimeOfTime = datetime.fromisoformat(time)
 
 					if(int(signInOut) == 0):
 						signInTime = datetime.fromisoformat(userEvents[index-1][1])
 						timeSpentCheckedIn = datetimeOfTime - signInTime
-						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn))
+						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn, category))
 						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
 				ret[user[0]] = thisUsersList
 			return ret
@@ -399,3 +399,28 @@ class databaseQuerys:
 		except Exception as e:
 			print("error in doesCategoryIDExist", e)
 			return -1
+
+	def runOnceToFillNewWvents(self):
+
+		cur = self.con.cursor()
+		try:
+
+
+			allTS = self.getAllUsersTimes()
+			for user in allTS:
+				thisUsersTimes = allTS[user]
+				#print(thisUsersTimes)
+				for time in range(len(thisUsersTimes)):
+					print(user, thisUsersTimes[time][0], thisUsersTimes[time][1].total_seconds()/3600, thisUsersTimes[time][2])
+
+					s = f"INSERT INTO newEvents VALUES ({user},'{thisUsersTimes[time][0]}', '{thisUsersTimes[time][1].total_seconds()/3600}', {thisUsersTimes[time][2]})"
+					res = cur.execute(s)
+
+			self.con.commit()
+
+			return 0
+		except Exception as e:
+			print("error in runOnceToFillNewWvents", e)
+			return -1
+
+		

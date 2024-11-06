@@ -36,27 +36,32 @@ class databaseQuerys:
 
 	def checkUserIn(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
-		try:
-			res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
-			ret = res.fetchone()
-			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {1})"
-			res = cur.execute(s)
+		s = f"UPDATE users SET checkedInTime = '{datetime.now()}' where id = " + str(id)
+		res = cur.execute(s)
+		res = cur.execute("UPDATE users SET checkedIn = 1 where id = " + str(id))
+		
+		s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {1})"
+		res = cur.execute(s)
 
-			self.con.commit()
+		self.con.commit()
 
-			return 0
-		except Exception as e:
-			print("error in checkUserIn", e)
-			return -1
+		return 0
+		
 		
 
 	def checkUserOut(self, id, action, categoryId = -1):
 		cur = self.con.cursor()
 		try:
 			res = cur.execute("UPDATE users SET checkedIn = 0 where id = " + str(id))
+
+			res = cur.execute("SELECT checkedInTime from users where id = " + str(id))
 			ret = res.fetchone()
+			checkInTime = datetime.fromisoformat(ret[0])
 
 			s = f"INSERT INTO events VALUES ({id},'{datetime.now()}', '{action}', {categoryId}, {0})"
+			res = cur.execute(s)
+
+			s = f"INSERT INTO newEvents VALUES ({id},'{checkInTime}', '{(datetime.now() - checkInTime).total_seconds()/3600}', {categoryId})"
 			res = cur.execute(s)
 
 			self.con.commit()
@@ -71,7 +76,7 @@ class databaseQuerys:
 			if(self.doesUserExist(id)):
 				return 1;
 			else:
-				res = cur.execute(f"INSERT INTO users VALUES ({id}, '{name}', 0)")
+				res = cur.execute(f"INSERT INTO users VALUES ({id}, '{name}', 0, {datetime.now()})")
 				ret = res.fetchone()
 				self.con.commit()
 				return 0

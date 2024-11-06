@@ -2,9 +2,14 @@ Hours Page
 	- invert order of sign ins
 	- figure out how SWE/FLL fit into other categories
 
+Admin page:
+	- edit category of sign in
 
 All Pages:
 	- move common methods main js
 
 DB
 	- update db creation to incude new events
+	- update all the event reads to hit newEvents
+	- check website
+	- add "edit category"

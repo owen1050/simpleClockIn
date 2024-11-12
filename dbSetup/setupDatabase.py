@@ -11,4 +11,5 @@ cur.execute("CREATE TABLE IF NOT EXISTS envVars(id INTEGER, name TEXT, value TEX
 
 cur.execute("CREATE TABLE IF NOT EXISTS categories(  id integer, hours real,  buildVarsityPer real,  buildJVPer real,  buildParPer real,  busVarsityPer real,  busJVPer real,  busParPer real,  name text,  weight real)")
 
+
 con.commit()

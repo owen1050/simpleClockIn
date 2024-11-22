@@ -10,15 +10,15 @@
 		*.reset {
 			  background-color: #FF474C;
 		}
+		*.heading{
+			font-size: 40px;
+		}
 		h0 {
 			font-size: 90px;
 			font-weight: bold;
 			text-decoration: underline;
 		}
-		h1 {
-			font-size: 60px;
-		}
-		h2 {
+		*.stage {
 			font-size: 45px;
 		}
 		button {
@@ -32,9 +32,9 @@
 
 <div class = "all">
 	<heading class = "heading">
-		<h1>FLL Judging Session Timer</h1>
+		<h1>FLL Timer</h1>
 	</heading>
-		<h2 id = "stage">Session: Team Welcome</h2>
+		<h2 class = "stage" id = "stage">Session: Team Welcome</h2>
 	<h0 id = "time">2:00</h0>
 	
 	<br>
@@ -51,7 +51,7 @@
 	<button type="button" id="playButton" onclick="play()" >Play ▶️</button>
 	<br>
 	<br>
-	<h2 id = "time30">30 Minute Timer: 30:00</h2>
+	<h2 class = "stage" id = "time30">30 Minute Timer: 30:00</h2>
 	<br>
 	<br>
 	<button class = "reset" type="button" id="resetTimer" onclick="resetButtonPressed()">Double Click To Reset Timer</button>

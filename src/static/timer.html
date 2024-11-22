@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FLL Timer</title>
+	<style>
+		.all {
+    width: 400px;
+    height: 600px;
+
+    position:relative;
+    top:0%;
+    left:0%;
+		}
+	</style>
+      
+	</head>
+<body onload="initPage()">
+
+
+<div class = "all">
+
+	<h1 ><u>FLL Timer<u></h1>
+	<h1 id = "time"><u>2:00<u></h1>
+	<h2 id = "stage"><u>Team Welcome<u></h2>
+
+
+
+
+	
+	<button type="button" id="moveOnButton" onclick="moveOn()" >Move On</button>
+	<br>
+	<br>
+	<button type="button" id="moveBackButton" onclick="moveBack()" >Move Back</button>
+	<br>
+	<br>
+	<button type="button" id="pauseButton" onclick="pause()" >Pause</button>
+	<br>
+	<br>
+	<button type="button" id="playButton" onclick="play()" >Play</button>
+	<br>
+	<br>
+	<button type="button" id="resetTimer" onclick="resetTimer()">Reset Timer</button>
+
+
+</div>
+
+<script src="timer.js"></script>
+</body>
+</html>

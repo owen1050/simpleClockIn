@@ -18,6 +18,11 @@ def main():
 def calendarPage():
 	return app.send_static_file('calendar.html')
 
+@app.route('/timer')
+def timerPage():
+	return app.send_static_file('timer.html')
+
+
 @app.route('/newUser')
 def newUser():
 	return app.send_static_file('newUserPage.html')

@@ -33,7 +33,7 @@ function startTimer(){
 function resetTimer(){
 
   timeLeft = stageTimes[stage]
-  isRunning = true;
+  isRunning = false;
   stage = 0;
   updateScreen();
 

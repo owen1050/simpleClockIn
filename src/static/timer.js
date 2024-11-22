@@ -126,4 +126,8 @@ function secondHasPassed(){
 
   }
 
+  if(timeLeft30 < 0){
+    timeLeft30 = 0;
+  }
+
 }

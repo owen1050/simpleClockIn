@@ -14,6 +14,7 @@ var intervalId2 = window.setInterval(function(){
 
 }, 3000);
 var audio = new Audio('alarm.mp3');
+var endAlarm = new Audio('end.mp3');
 
 var stage = 0;
 var stageMax = 7;
@@ -102,9 +103,8 @@ function updateScreen(){
   if(sec < 10){
     sec = "0" + sec
   }
-  stageText.innerText = "Session: " + stages[stage];
-  timerText.innerText = "" + min + ":" + sec;
-
+  stageText.innerText = stages[stage] + ": " + min + ":" + sec;
+  
   var min30 = Math.floor(timeLeft30 / 60)
   var sec30 = timeLeft30 % 60
   if(sec30 < 10){
@@ -120,11 +120,21 @@ function secondHasPassed(){
     timeLeft30 = timeLeft30 - 1;
   }
 
+
   if(timeLeft == 0){
-    audio.play();
+    if(endAlarm.paused){
+        audio.play();
+    }
+
     moveOn()
 
   }
+
+  if(timeLeft30 == 0){
+    audio.pause()
+    endAlarm.play()
+  }
+
 
   if(timeLeft30 < 0){
     timeLeft30 = 0;

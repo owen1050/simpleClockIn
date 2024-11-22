@@ -1,4 +1,5 @@
 var timerText = document.getElementById("time");
+var timer30Text = document.getElementById("time30");
 var stageText = document.getElementById("stage");
 var intervalId = window.setInterval(function(){
   secondHasPassed()
@@ -8,16 +9,18 @@ var intervalId = window.setInterval(function(){
 var audio = new Audio('alarm.mp3');
 
 var stage = 0;
-var stageMax = 5;
+var stageMax = 7;
 var stageMin = 0;
 
 var timeLeft = 0;
 
+var timeLeft30 = 0;
+
 var isRunning = false;
 const stages = [];
-stages.push("Team Welcome", "Innovation Project Presentation", "Innovation Project Questions", "Robot Design Explination", "Robot Design Q&A", "Final Share & Feedback");
+stages.push("Team Welcome", "Innovation Project Presentation", "Innovation Project Q&A", "Robot Design Explanation", "Robot Design Q&A", "Final Share & Feedback", "Judge Discussion", "Judge Break");
 const stageTimes = [];
-stageTimes.push(2*60, 5*60, 5*60, 5*60, 5*60, 8*60);
+stageTimes.push(2*60, 5*60, 5*60, 5*60, 5*60, 8*60, 10*60, 5*60);
 
 
 function initPage(){
@@ -31,10 +34,10 @@ function startTimer(){
 }
 
 function resetTimer(){
-
-  timeLeft = stageTimes[stage]
-  isRunning = false;
   stage = 0;
+  timeLeft = stageTimes[stage]
+  timeLeft30 = 30*60;
+  isRunning = false;  
   updateScreen();
 
 }
@@ -85,12 +88,20 @@ function updateScreen(){
   }
   stageText.innerText = stages[stage];
   timerText.innerText = "" + min + ":" + sec;
+
+  var min30 = Math.floor(timeLeft30 / 60)
+  var sec30 = timeLeft30 % 60
+  if(sec30 < 10){
+    sec30 = "0" + sec30
+  }
+  timer30Text.innerText = "" + min30 + ":" + sec30;
       
 }
 
 function secondHasPassed(){
   if(isRunning){
     timeLeft = timeLeft - 1
+    timeLeft30 = timeLeft30 - 1;
   }
 
   if(timeLeft == 0){

@@ -73,7 +73,7 @@ function stageBoundsCheck(){
     isRunning = false
   }
   if(stage < stageMin){
-    stage = stageMin
+    stage = stageMax
   }
 }
 

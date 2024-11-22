@@ -3,13 +3,23 @@
 	<head>
 		<title>FLL Timer</title>
 	<style>
-		.all {
-    width: 400px;
-    height: 600px;
-
-    position:relative;
-    top:0%;
-    left:0%;
+		*.all {
+    width: 100%;
+  	text-align: center;
+		}
+		h0 {
+			font-size: 90px;
+			font-weight: bold;
+			text-decoration: underline;
+		}
+		h1 {
+			font-size: 60px;
+		}
+		h2 {
+			font-size: 50px;
+		}
+		button {
+			font-size: 35px;	
 		}
 	</style>
       
@@ -18,35 +28,30 @@
 
 
 <div class = "all">
-	<heading>
-		<h1 ><u>FLL Judging Session Timer<u></h1>
+	<heading class = "heading">
+		<h1>FLL Judging Session Timer</h1>
 	</heading>
-	<h2 ><u>Session Timer<u></h2>
-	<h1 id = "time"><u>2:00<u></h1>
-	<h2 id = "stage"><u>Team Welcome<u></h2>
-	<br>
-	<br>
-	<h2><u>30 Minute Timer<u></h2>
-	<h1 id = "time30"><u>30:00<u></h1>
-
-	<br>
-	<br>
-
-
+		<h2 id = "stage">Session: Team Welcome</h2>
+	<h0 id = "time">2:00</h0>
 	
-	<button type="button" id="moveOnButton" onclick="moveOn()" >Move On</button>
 	<br>
 	<br>
-	<button type="button" id="moveBackButton" onclick="moveBack()" >Move Back</button>
+	<button type="button" id="moveOnButton" onclick="moveOn()" >Next Section ⏩</button>
 	<br>
 	<br>
-	<button type="button" id="pauseButton" onclick="pause()" >Pause</button>
+	<button type="button" id="moveBackButton" onclick="moveBack()" >⏪ Previous Section</button>
 	<br>
 	<br>
-	<button type="button" id="playButton" onclick="play()" >Play</button>
+	<button type="button" id="pauseButton" onclick="pause()" >Pause ⏸️</button>
 	<br>
 	<br>
-	<button type="button" id="resetTimer" onclick="resetTimer()">Reset Timer</button>
+	<button type="button" id="playButton" onclick="play()" >Play ▶️</button>
+	<br>
+	<br>
+	<h2 id = "time30">30 Minute Timer: 30:00</h2>
+	<br>
+	<br>
+	<button type="button" id="resetTimer" onclick="resetButtonPressed()">Reset Timer</button>
 
 
 </div>

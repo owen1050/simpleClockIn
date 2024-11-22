@@ -1,11 +1,18 @@
 var timerText = document.getElementById("time");
 var timer30Text = document.getElementById("time30");
 var stageText = document.getElementById("stage");
+
+var resetButtonCount = 0;
 var intervalId = window.setInterval(function(){
   secondHasPassed()
   updateScreen()
 
 }, 1000);
+
+var intervalId2 = window.setInterval(function(){
+  resetButtonCount = 0;
+
+}, 3000);
 var audio = new Audio('alarm.mp3');
 
 var stage = 0;
@@ -31,6 +38,15 @@ function initPage(){
 
 function startTimer(){
   isRunning = true;
+}
+
+
+function resetButtonPressed(){
+  resetButtonCount = resetButtonCount + 1
+  if(resetButtonCount == 2){
+    resetButtonCount = 0;
+    resetTimer()
+  }
 }
 
 function resetTimer(){
@@ -86,7 +102,7 @@ function updateScreen(){
   if(sec < 10){
     sec = "0" + sec
   }
-  stageText.innerText = stages[stage];
+  stageText.innerText = "Session: " + stages[stage];
   timerText.innerText = "" + min + ":" + sec;
 
   var min30 = Math.floor(timeLeft30 / 60)
@@ -94,7 +110,7 @@ function updateScreen(){
   if(sec30 < 10){
     sec30 = "0" + sec30
   }
-  timer30Text.innerText = "" + min30 + ":" + sec30;
+  timer30Text.innerText = "30 Minute Timer: " + min30 + ":" + sec30;
       
 }
 

@@ -17,7 +17,7 @@ var isRunning = false;
 const stages = [];
 stages.push("Team Welcome", "Innovation Project Presentation", "Innovation Project Questions", "Robot Design Explination", "Robot Design Q&A", "Final Share & Feedback");
 const stageTimes = [];
-stageTimes.push(2*60, 5*60, 5*60, 5*60, 5*60, 8);
+stageTimes.push(2*60, 5*60, 5*60, 5*60, 5*60, 8*60);
 
 
 function initPage(){

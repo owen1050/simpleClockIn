@@ -77,10 +77,8 @@ function getTimeAPI(){
     xhr.open("GET", url + "/api/getMatchTime", false);
     xhr.send();
     const data = (xhr.response);
-    if(data == -1){
-      timeLeft = matchTime
-    } else {
-      timeLeft = data
-    }
+
+    timeLeft = data
+    
     console.log(data);
 }

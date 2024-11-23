@@ -1,7 +1,7 @@
 
 var stageText = document.getElementById("stage");
-
 url = "http://villawalsh.happyrobotics.com"
+url ="http://localhost:5000" 
 var resetButtonCount = 0;
 var intervalId = window.setInterval(function(){
   updateScreen()
@@ -18,6 +18,7 @@ var timeLeft = 0;
 var matchTime = 60*2 + 30
 var playedEndingSound = false;
 var playedStartSound = false;
+var nOneCount = 0
 
 function initPage(){
   updateScreen();
@@ -27,7 +28,10 @@ function initPage(){
 function updateScreen(){
   getTimeAPI();
   if(timeLeft == -1){
+    nOneCount = nOneCount + 1;
     timeLeft = matchTime 
+  } else {
+    nOneCount = 0
   }
   disp = matchTime - timeLeft
   if(disp > -4 && disp <= 0 && playedEndingSound == false){
@@ -47,6 +51,10 @@ function updateScreen(){
     disp = matchTime
   }else if(disp < 0){
     disp = 0
+  }
+
+  if(nOneCount > 35){
+    disp = matchTime
   }
 
   var min = Math.floor(disp / 60)

@@ -26,11 +26,15 @@ function initPage(){
 
 function updateScreen(){
   getTimeAPI();
+  if(timeLeft == -1){
+    timeLeft = matchTime 
+  }
   disp = matchTime - timeLeft
   if(disp > -4 && disp <= 0 && playedEndingSound == false){
     endAlarm.play()
-    setTimeout(function(){playedEndingSound = false},5000);
     playedEndingSound = true
+    setTimeout(function(){playedEndingSound = false},5000);
+
   }
   if(disp > (matchTime - 3) && playedStartSound == false){
     startAudio.play()

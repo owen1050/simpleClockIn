@@ -1,7 +1,7 @@
 
 var stageText = document.getElementById("stage");
 
-url = "http://localhost:5000"
+url = "http://villawalsh.happyrobotics.com:5000"
 var resetButtonCount = 0;
 var intervalId = window.setInterval(function(){
   updateScreen()

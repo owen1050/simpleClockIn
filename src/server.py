@@ -51,8 +51,6 @@ def apiDoesUserExist():
 def apiGetMatchTime():
 	global matchTime
 	print(matchTime)
-	if(matchTime == -1):
-		return str(-1)
 	r = time.time() - matchTime
 	print(r)
 	return str(int(r))
@@ -60,7 +58,7 @@ def apiGetMatchTime():
 @app.route('/api/resetMatchTime')
 def apiResetMatchTime():
 	global matchTime
-	matchTime = -1
+	matchTime = 0
 	return str(0)
 
 @app.route('/api/startMatch')
@@ -74,7 +72,7 @@ def apiStartMatch():
 @app.route('/api/endMatch')
 def apiEndMatch():
 	global matchTime
-	matchTime = -1
+	matchTime = 0
 	return str(0)
 
 

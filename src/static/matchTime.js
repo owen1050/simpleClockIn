@@ -33,12 +33,12 @@ function updateScreen(){
   if(disp > -4 && disp <= 0 && playedEndingSound == false){
     endAlarm.play()
     playedEndingSound = true
-    setTimeout(function(){playedEndingSound = false},5000);
 
   }
   if(disp > (matchTime - 3) && playedStartSound == false){
     startAudio.play()
     playedStartSound = true
+    playedEndingSound = false;
     setTimeout(function(){playedStartSound = false},5000);
     
   }

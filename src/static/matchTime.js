@@ -27,12 +27,12 @@ function initPage(){
 function updateScreen(){
   getTimeAPI();
   disp = matchTime - timeLeft
-  if(disp <= 0 && playedEndingSound == false){
+  if(disp > -4 && disp <= 0 && playedEndingSound == false){
     endAlarm.play()
     setTimeout(function(){playedEndingSound = false},5000);
     playedEndingSound = true
   }
-  if(disp > (matchTime - 1) && playedStartSound == false){
+  if(disp > (matchTime - 3) && playedStartSound == false){
     startAudio.play()
     playedStartSound = true
     setTimeout(function(){playedStartSound = false},5000);

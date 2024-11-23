@@ -1,6 +1,6 @@
 
 var stageText = document.getElementById("stage");
-url = "http://villawalsh.happyrobotics.com"
+//url = "http://villawalsh.happyrobotics.com"
 url ="http://localhost:5000" 
 var resetButtonCount = 0;
 var intervalId = window.setInterval(function(){

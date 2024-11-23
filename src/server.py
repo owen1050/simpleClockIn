@@ -78,6 +78,23 @@ def apiEndMatch():
 	return str(0)
 
 
+@app.route('/api/addOneMatchNum')
+def apiAddOneMatchNum():
+	global matchNum
+	matchNum = matchNum + 1
+	return str(0)
+
+@app.route('/api/subOneMatchNum')
+def apiSubOneMatchNum():
+	global matchNum
+	matchNum = matchNum - 1
+	return str(0)
+
+@app.route('/api/getMatchNum')
+def apiGetMatchNum():
+	global matchNum
+	return str(matchNum)
+
 @app.route('/api/isUserCheckedIn')
 def apiIsUserCheckedIn():
 	id = int(request.args.get('id', default = -1))
@@ -212,6 +229,8 @@ def updateCategoryValues():
 	return str(ret)
 
 if __name__ == '__main__':
-	global matchTime 
+	global matchTime
+	global matchNum
+	matchNum = 0
 	matchTime = -1
 	app.run(host="0.0.0.0", port=5000)

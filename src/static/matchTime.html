@@ -9,6 +9,7 @@
 		}
 		*.time {
 			font-size: 200pt;
+		  	 line-height: 0.1;
 		}
 		button{
 			font-size: 30pt;
@@ -25,12 +26,20 @@
 		<h1>Bridgewater Raritan Brik Rampage</h1>
 	</heading>
 	<h2 class = "time" id = "stage">2:30</h2>
+	<h2 class = "time" id = "matchNum">0</h2>
 	
 	<button type="button" id="playButton" onclick="startMatchAPI()" >Play ▶️</button>
 	<br>
 	<br>
 	<button class = "reset" type="button" id="resetTimer" onclick="resetMatchTimeAPI()">Reset</button>
 
+	<br>
+	<br>
+
+	<button type="button" id="addMatch" onclick="matchNumAddOne()" >Match +1</button>
+	<br>
+	<br>
+	<button class = "reset" type="button" id="subMatch" onclick="matchNumSubOne()">Match -1</button>
 </div>
 
 <script src="matchTime.js"></script>

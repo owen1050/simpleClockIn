@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Match Timer</title>
+	<style>
+		*.all {
+		    width: 100%;
+		  	text-align: center;
+		}
+		*.time {
+			font-size: 200pt;
+		  	 line-height: 0.1;
+		}
+		button{
+			font-size: 30pt;
+		}
+		h1 {
+			font-size: 80pt;
+			line-height: 0.25;
+		}
+
+	</style>
+      
+	</head>
+<body onload="initPage()">
+
+
+<div class = "all">
+	<heading class = "heading">
+		<h1>Bridgewater Raritan</h1>
+		<h1>Brik Rampage</h1>
+	</heading>
+	<h2 class = "time" id = "stage">2:30</h2>
+	<h2 class = "time" id = "matchNum">0</h2>
+	
+	<button type="button" id="playButton" onclick="startMatchAPI()" >Play ▶️</button>
+	<br>
+	<br>
+	<button class = "reset" type="button" id="resetTimer" onclick="resetMatchTimeAPI()">Reset</button>
+
+	<br>
+	<br>
+
+	<button type="button" id="addMatch" onclick="matchNumAddOne()" >Match +1</button>
+	<br>
+	<br>
+	<button class = "reset" type="button" id="subMatch" onclick="matchNumSubOne()">Match -1</button>
+</div>
+
+<script src="matchTime.js"></script>
+</body>
+</html>

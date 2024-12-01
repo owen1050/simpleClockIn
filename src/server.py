@@ -10,6 +10,7 @@ import json, time, requests
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
 
+
 @app.route('/')
 def main():
 	return app.send_static_file('main.html')
@@ -17,6 +18,15 @@ def main():
 @app.route('/calendar')
 def calendarPage():
 	return app.send_static_file('calendar.html')
+
+@app.route('/timer')
+def timerPage():
+	return app.send_static_file('timer.html')
+
+@app.route('/matchtimer')
+def matchTimer():
+	return app.send_static_file('matchTime.html')
+
 
 @app.route('/newUser')
 def newUser():
@@ -30,13 +40,60 @@ def adminPage():
 def hoursPage():
 	return app.send_static_file('hours.html')
 
-
 @app.route('/api/doesUserExist')
 def apiDoesUserExist():
 	id = int(request.args.get('id', default = -1))
 	exists = db.doesUserExist(id)
 	print("doesUserExist:", id, exists)
 	return str(exists)
+
+@app.route('/api/getMatchTime')
+def apiGetMatchTime():
+	global matchTime
+	print(matchTime)
+	if(matchTime == -1):
+		return str(-1)
+	r = time.time() - matchTime
+	print(r)
+	return str(int(r))
+
+@app.route('/api/resetMatchTime')
+def apiResetMatchTime():
+	global matchTime
+	matchTime = -1
+	return str(0)
+
+@app.route('/api/startMatch')
+def apiStartMatch():
+	global matchTime
+	matchTime  = time.time()
+	print(matchTime)
+	return str(0)
+
+
+@app.route('/api/endMatch')
+def apiEndMatch():
+	global matchTime
+	matchTime = -1
+	return str(0)
+
+
+@app.route('/api/addOneMatchNum')
+def apiAddOneMatchNum():
+	global matchNum
+	matchNum = matchNum + 1
+	return str(0)
+
+@app.route('/api/subOneMatchNum')
+def apiSubOneMatchNum():
+	global matchNum
+	matchNum = matchNum - 1
+	return str(0)
+
+@app.route('/api/getMatchNum')
+def apiGetMatchNum():
+	global matchNum
+	return str(matchNum)
 
 @app.route('/api/isUserCheckedIn')
 def apiIsUserCheckedIn():
@@ -172,4 +229,8 @@ def updateCategoryValues():
 	return str(ret)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+	global matchTime
+	global matchNum
+	matchNum = 0
+	matchTime = -1
+	app.run(host="0.0.0.0", port=5000)

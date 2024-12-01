@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FLL Timer</title>
+	<style>
+		*.all {
+    width: 100%;
+  	text-align: center;
+		}
+		*.reset {
+			  background-color: #FF474C;
+		}
+		*.heading{
+			font-size: 40px;
+		}
+		h0 {
+			font-size: 90px;
+			font-weight: bold;
+			text-decoration: underline;
+		}
+		*.stage {
+			font-size: 55px;
+			color: #de473c;
+		}
+		*.stage30 {
+			font-size: 55px;
+		}
+		button {
+			font-size: 30px;	
+		}
+	</style>
+      
+	</head>
+<body onload="initPage()">
+
+
+<div class = "all">
+	<heading class = "heading">
+		<h1>FLL Timer</h1>
+	</heading>
+	<h2 class = "stage" id = "stage">Team Welcome: 2:00</h2>
+	
+	<br>
+	<button type="button" id="moveOnButton" onclick="moveOn()" >Next Session ⏩</button>
+	<br>
+	<br>
+	<button type="button" id="moveBackButton" onclick="moveBack()" >⏪ Previous Session</button>
+	<br>
+	<br>
+	<button type="button" id="pauseButton" onclick="pause()" >Pause ⏸️</button>
+	<br>
+	<br>
+	<button type="button" id="playButton" onclick="play()" >Play ▶️</button>
+	<br>
+	<br>
+	<h2 class = "stage30" id = "time30">30 Minute Timer: 30:00</h2>
+	<br>
+	<br>
+	<button class = "reset" type="button" id="resetTimer" onclick="resetButtonPressed()">Double Click To Reset Timer</button>
+
+
+</div>
+
+<script src="timer.js"></script>
+</body>
+</html>

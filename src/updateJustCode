@@ -3,4 +3,4 @@ git add -A
 git commit -m "update db"
 git pull
 git push
-screen -dmS SignIn python3 server.py
+screen -dmS SignIn waitress-serve --host 127.0.0.1 --port 5000 server:app

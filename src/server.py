@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 from flask import send_file
 from threading import Thread
+from flask import Flask,redirect
 
 import json, time, requests
 
@@ -98,7 +99,7 @@ def setHoursForCategory():
 def getBackgroundImage():
 	return send_file("static/background.png", mimetype='image/png')
 
-@app.route('/api/checkOutAllUsers')
+@app.route('/api/checkOutAllUsers') #this is the plus one min
 def checkOutAllUsers():
 	ret = db.checkOutAllUsers()
 	print("checkedOutAllUsers:", ret)

@@ -4,15 +4,10 @@ from flask import request
 from flask import send_file
 from threading import Thread
 
-
 import json, time, requests
-
-matchNum = 0
-matchTime = -1
 
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
-
 
 
 @app.route('/')
@@ -25,12 +20,11 @@ def calendarPage():
 
 @app.route('/timer')
 def timerPage():
-	return app.send_static_file('timer.html')
+	return redirect("https://flltimers.happyrobotics.com")
 
 @app.route('/matchtimer')
 def matchTimer():
-	return app.send_static_file('matchTime.html')
-
+	return redirect("https://flltimers.happyrobotics.com/matchtimer")
 
 @app.route('/newUser')
 def newUser():
@@ -50,54 +44,6 @@ def apiDoesUserExist():
 	exists = db.doesUserExist(id)
 	print("doesUserExist:", id, exists)
 	return str(exists)
-
-@app.route('/api/getMatchTime')
-def apiGetMatchTime():
-	global matchTime
-	print(matchTime)
-	if(matchTime == -1):
-		return str(-1)
-	r = time.time() - matchTime
-	print(r)
-	return str(int(r))
-
-@app.route('/api/resetMatchTime')
-def apiResetMatchTime():
-	global matchTime
-	matchTime = -1
-	return str(0)
-
-@app.route('/api/startMatch')
-def apiStartMatch():
-	global matchTime
-	matchTime  = time.time()
-	print(matchTime)
-	return str(0)
-
-
-@app.route('/api/endMatch')
-def apiEndMatch():
-	global matchTime
-	matchTime = -1
-	return str(0)
-
-
-@app.route('/api/addOneMatchNum')
-def apiAddOneMatchNum():
-	global matchNum
-	matchNum = matchNum + 1
-	return str(0)
-
-@app.route('/api/subOneMatchNum')
-def apiSubOneMatchNum():
-	global matchNum
-	matchNum = matchNum - 1
-	return str(0)
-
-@app.route('/api/getMatchNum')
-def apiGetMatchNum():
-	global matchNum
-	return str(matchNum)
 
 @app.route('/api/isUserCheckedIn')
 def apiIsUserCheckedIn():

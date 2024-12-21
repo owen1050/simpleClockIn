@@ -2,15 +2,40 @@
 <html>
 	<head>
 		<title>8513 Sign In</title>
-				<link rel="stylesheet" type="text/css" href="style.css">	
+
+    <style>
+     .inner {
+        display: inline-block;
+     }
+     table { border-collapse: collapse;
+           border:solid 3px #fff }
+     tr { border: none; }
+     td {
+       border-right: solid 1px #aaa; 
+       border-left: solid 1px #aaa;
+       border-top: solid 1px #777; 
+       border-bottom: solid 1px #777;
+     }
+     * {
+        text-align: center;
+        background-color: #362740;
+      }
+      html {
+        background-color: #362740;
+      }
+    </style>
+
+
+		<link rel="stylesheet" type="text/css" href="style.css">	
 		</head>
 <body>
 
 
-<h1><u>Hours Page<u></h1>
-<h2 id = "nameTextID"><u>Welcome<u></h2>
+<h1>Hours Page</h1>
+<h2 id = "nameTextID">Welcome</h2>
 
-<h3 id="statusText">Calculating Status....</h3>
+<h3 id="statusText" style="white-space: pre-line;">Calculating Status....</h3>
+<button type="button" id="homeButton" onclick="goHome()">Home</button>
 
 <table id="categoryTableID">
   <tr>

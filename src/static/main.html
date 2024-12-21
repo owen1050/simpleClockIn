@@ -2,25 +2,33 @@
 <html>
 	<head>
 		<title>8513 Sign In</title>
-	
-       <link rel="stylesheet" href="style.css">
+		<style>
+			
+			* {
+			  	text-align: center;
+			  	background-color: #362740;
+			}
+			html {
+				background-color: #362740;
+			}
+		</style>
+
+  	<link rel="stylesheet" href="style.css">
 	</head>
 <body onload="updateUsersList()">
 
-<h1 ><u>8513 Sign In<u></h1>
+<h1 >8513 Sign In</h1>
 
 <h2 id="checkinText">Waiting to check in</h2>
 <h4 id="usernameText">User: Unknown</h4>
 
-<input type="text" id="id" name="idBox" placeholder="Enter pin to sign in" onkeyup="signInTextChanged()">
-<br>
-  <select name="Categories" id="categoryList" style="display:none;">
+<input class = "idBox" type="text" id="id" name="idBox" placeholder="Enter pin to sign in" onkeyup="signInTextChanged()" style = "width: 50%">
+  <select name="Categories" id="categoryList" style="display:none;width: 50%">
   </select>
 <br>
-<input type="text" id="idAction" name="actionBox" placeholder="What were you working on?" style="display:none;">
+<input type="text" id="idAction" name="actionBox" placeholder="What were you working on?" style="display:none;width: 50%">
 <br>
 <button type="button" id="buttonID" onclick="signInOut()" style="display:none;">Clock in/out</button>
-<br>
 <button type="button" id="hoursButtonID" onclick="gotoHours()" style="display:none;">Go To Hours</button>
 	<div class="a">
  <h4 id="listText">Users checked in: </h4>

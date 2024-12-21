@@ -206,7 +206,12 @@ function updateUsersList() {
   if(listStr.slice(-1) == ' '){
     listStr = listStr.substring(0, listStr.length - 2) + "."
   }
-  listTextElement.innerText = "Users checked in("+ numUsers.toString() +"):\n" + listStr
+  if(numUsers == 1){
+    listTextElement.innerText = numUsers.toString() + " User checked in:\n" + listStr
+  } else {
+    listTextElement.innerText = numUsers.toString() + " Users checked in:\n" + listStr
+  }
+  
 }
 
 function signInTextChanged() {

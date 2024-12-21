@@ -9,7 +9,6 @@ import json, time, requests
 db = databaseQuerys()
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-
 @app.route('/')
 def main():
 	return app.send_static_file('main.html')

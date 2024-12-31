@@ -5,3 +5,4 @@ Hours Page
 
 All Pages:
 	- move common methods main js
+	- some action texts dont get displayed?

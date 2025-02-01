@@ -113,7 +113,7 @@ function getAllUsersHours(){
     retArr = new Map();
     for(let i = 0; i < arr.length; i++){
         thisEle = arr[i].split(":")
-        retArr.set(Number(thisEle[0]), (thisEle[1]/3600).toFixed(2))
+        retArr.set(Number(thisEle[0]), (thisEle[1]/3600).toFixed(3))
     }
     console.log(retArr);
     return retArr

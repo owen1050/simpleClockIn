@@ -2,40 +2,55 @@
 <html>
 	<head>
 		<title>8513 Sign In</title>
-
+    <link rel="stylesheet" type="text/css" href="style.css">  
     <style>
      .inner {
         display: inline-block;
      }
      table { border-collapse: collapse;
            border:solid 3px #fff }
-     tr { border: none; }
+     tr { border: none; 
+      background-color: rgb(236, 207, 241);
+     }
      td {
-       border-right: solid 1px #aaa; 
-       border-left: solid 1px #aaa;
-       border-top: solid 1px #777; 
-       border-bottom: solid 1px #777;
+       border-right: solid 1px #111; 
+       border-left: solid 1px #111;
+       border-top: solid 1px #111; 
+       border-bottom: solid 1px #111;
+       background-color: rgb(236, 207, 241);
+     }
+     th{
+      background-color: rgb(175, 206, 167);
+      color: rgb(15, 15, 15);
      }
      * {
         text-align: center;
-        background-color: #d053c0;
+        background-color: rgb(236, 207, 241);
       }
       html {
-        background-color: #d053c0;
+        background-color: rgb(236, 207, 241);
+      }
+      .hoursText {
+       
+        color: rgb(15, 15, 15);
+      }
+      .hoursButton {
+       background-color: rgb(175, 206, 167);
+        color: rgb(15, 15, 15);
       }
     </style>
 
 
-		<link rel="stylesheet" type="text/css" href="style.css">	
+		
 		</head>
 <body>
 
 
-<h1>Hours Page</h1>
-<h2 id = "nameTextID">Welcome</h2>
+<h1 class="hoursText">Hours Page</h1>
+<h2 class="hoursText" id = "nameTextID">Welcome</h2>
 
-<h3 id="statusText" style="white-space: pre-line;">Calculating Status....</h3>
-<button type="button" id="homeButton" onclick="goHome()">Home</button>
+<h3  class="hoursText" id="statusText" style="white-space: pre-line;">Calculating Status....</h3>
+<button class="hoursButton" type="button" id="homeButton" onclick="goHome()">Home</button>
 
 <table id="categoryTableID">
   <tr>
@@ -54,7 +69,7 @@
   </tr>
 </table>
 
-<h2>List Of Events:</h2>
+<h2 class="hoursText">List Of Events:</h2>
 
 <table id="hoursTableID">
   <tr>

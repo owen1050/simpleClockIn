@@ -6,10 +6,10 @@
 </head>
 <body onload="updateUsersList()">
   <main class="container">
-    <h1>8513 Sign In</h1>
+    <h1 class="HeadingText">8513 Sign In</h1>
 
-    <h2 id="checkinText">Waiting to check in</h2>
-    <h4 id="usernameText">User: Unknown</h4>
+    <h2 class="HeadingText" id="checkinText">Waiting to check in</h2>
+    <h4 class="HeadingText" id="usernameText">User: Unknown</h4>
 
     <input class="idBox" type="text" id="id" name="idBox"
            placeholder="Enter pin to sign in"
@@ -36,5 +36,60 @@
 
   <script src="url.js"></script>
   <script src="main.js"></script>
+  <style type="text/css">
+		.HeadingText {
+			color: rgb(175, 206, 167);
+		}
+		.idBox {
+			background-color: rgb(175, 206, 167);
+		}
+
+/* Custom overrides */
+body {
+  background-color: rgb(236, 207, 241);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+input, select {
+  width: 100%;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+}
+
+button {
+  margin: 0.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.button-group {
+  margin-top: 1rem;
+}
+
+
+
+		
+
+  </style>
 </body>
 </html>

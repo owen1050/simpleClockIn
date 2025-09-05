@@ -15,22 +15,22 @@
            placeholder="Enter pin to sign in"
            onkeyup="signInTextChanged()">
 
-    <select name="Categories" id="categoryList" style="display:none"></select>
+    <select class="idBox" name="Categories" id="categoryList" style="display:none"></select>
 
-    <input type="text" id="idAction" name="actionBox"
+    <input class="idBox" type="text" id="idAction" name="actionBox"
            placeholder="What were you working on?"
            style="display:none">
 
     <div class="button-group">
-      <button type="button" id="buttonID" onclick="signInOut()" style="display:none;">Clock in/out</button>
-      <button type="button" id="hoursButtonID" onclick="gotoHours()" style="display:none;">Go To Hours</button>
+      <button class="idBox" type="button" id="buttonID" onclick="signInOut()" style="display:none;">Clock in/out</button>
+      <button class="idBox" type="button" id="hoursButtonID" onclick="gotoHours()" style="display:none;">Go To Hours</button>
     </div>
 
     <h4 id="listText">Users checked in:</h4>
 
     <div class="button-group">
-      <button type="button" id="newID" onclick="gotoNew()">No ID? Create new user here</button>
-      <button type="button" id="calendarButton" onclick="goToCal()">Team Calendar</button>
+      <button class="idBox" type="button" id="newID" onclick="gotoNew()">No ID? Create new user here</button>
+      <button class="idBox" type="button" id="calendarButton" onclick="goToCal()">Team Calendar</button>
     </div>
   </main>
 
@@ -42,6 +42,7 @@
 		}
 		.idBox {
 			background-color: rgb(175, 206, 167);
+			color: rgb(255, 255, 255);
 		}
 
 /* Custom overrides */

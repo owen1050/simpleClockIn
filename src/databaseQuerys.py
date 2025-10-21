@@ -283,6 +283,7 @@ class databaseQuerys:
 			sheet['B1'] = 'ID'
 			sheet['C1'] = 'Date'
 			sheet['D1'] = 'TimeSpent'
+			sheet['E1'] = 'Category'
 
 			row = 2
 			for user in t:
@@ -292,6 +293,7 @@ class databaseQuerys:
 					sheet["B" + str(row)] = user
 					sheet["C" + str(row)] = events[0].strftime("%m/%d/%Y")
 					sheet["D" + str(row)] = str(events[1])
+					sheet["E" + str(row)] = str(events[3])
 					row = row + 1
 			wb.save("data.xls")
 			return str(t)

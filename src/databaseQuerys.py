@@ -143,7 +143,7 @@ class databaseQuerys:
 					if(int(signInOut) == 0):
 						signInTime = datetime.fromisoformat(userEvents[index-1][1])
 						timeSpentCheckedIn = datetimeOfTime - signInTime
-						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn))
+						thisUsersList.append((datetimeOfTime.date(), timeSpentCheckedIn, event[3]))
 						#print(db.getUserName(int(id)), datetimeOfTime.date(), timeSpentCheckedIn)
 				ret[user[0]] = thisUsersList
 			return ret
@@ -293,7 +293,7 @@ class databaseQuerys:
 					sheet["B" + str(row)] = user
 					sheet["C" + str(row)] = events[0].strftime("%m/%d/%Y")
 					sheet["D" + str(row)] = str(events[1])
-					sheet["E" + str(row)] = str(events[3])
+					sheet["E" + str(row)] = str(events[2])
 					row = row + 1
 			wb.save("data.xls")
 			return str(t)

@@ -252,3 +252,6 @@ function signInTextChanged() {
   function goToCal(){
     window.location.href = url+"/calendar";
   }
+  function goToTodo(){
+    window.location.href = "https://todo.vwa-sisters1st-8513.com/";
+  }

@@ -99,6 +99,10 @@ def setHoursForCategory():
 def getBackgroundImage():
 	return send_file("static/background.png", mimetype='image/png')
 
+@app.route('/image/conf.gif')
+def getBackgroundImage():
+	return send_file("static/conf.gif", mimetype='image/gif')
+
 @app.route('/api/checkOutAllUsers') #this is the plus one min
 def checkOutAllUsers():
 	ret = db.checkOutAllUsers()

@@ -100,7 +100,7 @@ def getBackgroundImage():
 	return send_file("static/background.png", mimetype='image/png')
 
 @app.route('/image/conf.gif')
-def getBackgroundImage():
+def getConf():
 	return send_file("static/conf.gif", mimetype='image/gif')
 
 @app.route('/api/checkOutAllUsers') #this is the plus one min

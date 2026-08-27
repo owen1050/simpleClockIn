@@ -9,6 +9,7 @@ class databaseQuerys:
 
 	def __init__(self):
 		self.con = sqlite3.connect("realDB.db", check_same_thread=False)
+		self.checkOutAllUsers()
 		
 	def doesUserExist(self, id):
 		cur = self.con.cursor()
